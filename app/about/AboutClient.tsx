@@ -85,26 +85,26 @@ export default function AboutClient() {
           <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', lineHeight: 1.2, marginBottom: 24 }}>
             Built from a recipe,<br/>not a business plan.
           </h2>
-          <p style={{ color: 'var(--bs-text-2)', lineHeight: 1.7, marginBottom: 16 }}>
+          <p style={{ color: 'var(--text-mid)', lineHeight: 1.7, marginBottom: 16 }}>
             The first batch was a gift. The second was to see if we could repeat it. By the tenth we had a process, and by the hundredth we had a company. Still the same recipe.
           </p>
-          <p style={{ color: 'var(--bs-text-2)', lineHeight: 1.7 }}>
+          <p style={{ color: 'var(--text-mid)', lineHeight: 1.7 }}>
             Every bar is hand-poured in coastal Maine using cold-process saponification — the slow method that preserves more of the glycerin your skin actually wants.
           </p>
         </div>
       </section>
 
       {/* Pillars */}
-      <section style={{ background: 'var(--bs-surface-1)', padding: '80px 24px' }}>
+      <section style={{ background: 'var(--off-white)', padding: '80px 24px' }}>
         <div style={{ maxWidth: 1120, margin: '0 auto' }}>
           <div className="eyebrow" style={{ textAlign: 'center', marginBottom: 12 }}>What We Stand For</div>
           <h2 style={{ textAlign: 'center', fontSize: 'clamp(1.6rem, 2.5vw, 2.4rem)', marginBottom: 56 }}>Three principles, no exceptions.</h2>
           <div ref={pillarsRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
             {PILLARS.map(p => (
-              <div key={p.title} className="about-pillar" style={{ padding: '36px 28px', border: '1px solid var(--bs-border)', borderRadius: 4 }}>
-                <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', color: 'var(--bs-gold)', marginBottom: 16 }}>◆</div>
+              <div key={p.title} className="about-pillar" style={{ padding: '36px 28px', border: '1px solid var(--gold-line)', borderRadius: 4 }}>
+                <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.12em', color: 'var(--gold)', marginBottom: 16 }}>◆</div>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: 12 }}>{p.title}</h3>
-                <p style={{ color: 'var(--bs-text-2)', lineHeight: 1.7, fontSize: '0.95rem' }}>{p.body}</p>
+                <p style={{ color: 'var(--text-mid)', lineHeight: 1.7, fontSize: '0.95rem' }}>{p.body}</p>
               </div>
             ))}
           </div>
@@ -118,20 +118,20 @@ export default function AboutClient() {
         <div ref={stepsRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 32 }}>
           {STEPS.map(s => (
             <div key={s.n} className="about-step">
-              <div className="mono" style={{ fontSize: '2rem', color: 'var(--bs-border)', marginBottom: 16, fontWeight: 500 }}>{s.n}</div>
+              <div className="mono" style={{ fontSize: '2rem', color: 'var(--gold-line)', marginBottom: 16, fontWeight: 500 }}>{s.n}</div>
               <h3 style={{ fontSize: '1.1rem', marginBottom: 10 }}>{s.label}</h3>
-              <p style={{ color: 'var(--bs-text-2)', lineHeight: 1.65, fontSize: '0.9rem' }}>{s.body}</p>
+              <p style={{ color: 'var(--text-mid)', lineHeight: 1.65, fontSize: '0.9rem' }}>{s.body}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Stats */}
-      <section style={{ background: 'var(--bs-navy)', color: 'var(--bs-off-white)', padding: '72px 24px' }}>
+      <section style={{ background: 'var(--navy)', color: 'var(--off-white)', padding: '72px 24px' }}>
         <div ref={statsRef} style={{ maxWidth: 1120, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, textAlign: 'center' }}>
           {[['100%', 'USA-Sourced Ingredients'], ['3', 'Soap Forms'], ['1 → 10,000', 'Bars and Counting']].map(([n, l]) => (
             <div key={l} className="about-stat">
-              <div style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)', fontFamily: 'var(--bs-serif)', fontWeight: 600, color: 'var(--bs-gold)', marginBottom: 8 }}>{n}</div>
+              <div style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)', fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--gold)', marginBottom: 8 }}>{n}</div>
               <div style={{ fontSize: '0.85rem', letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.7 }}>{l}</div>
             </div>
           ))}
@@ -140,14 +140,14 @@ export default function AboutClient() {
 
       {/* Quote */}
       <section ref={quoteRef} style={{ maxWidth: 800, margin: '0 auto', padding: '96px 24px', textAlign: 'center' }}>
-        <p style={{ fontSize: 'clamp(1.3rem, 2.5vw, 2rem)', fontFamily: 'var(--bs-serif)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--bs-text-1)', marginBottom: 24 }}>
+        <p style={{ fontSize: 'clamp(1.3rem, 2.5vw, 2rem)', fontFamily: 'var(--font-display)', fontStyle: 'italic', lineHeight: 1.5, color: 'var(--text-dark)', marginBottom: 24 }}>
           &ldquo;The bar doesn&rsquo;t lie. If something is off in the process, you&rsquo;ll know it at the cure rack.&rdquo;
         </p>
-        <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.12em', color: 'var(--bs-text-3)' }}>— Founder, Bow &amp; Stern Soap Co.</div>
+        <div className="mono" style={{ fontSize: '0.75rem', letterSpacing: '0.12em', color: 'var(--text-light)' }}>— Founder, Bow &amp; Stern Soap Co.</div>
       </section>
 
       {/* CTA */}
-      <section ref={ctaRef} style={{ background: 'var(--bs-surface-1)', padding: '72px 24px', textAlign: 'center' }}>
+      <section ref={ctaRef} style={{ background: 'var(--off-white)', padding: '72px 24px', textAlign: 'center' }}>
         <div className="eyebrow" style={{ marginBottom: 12 }}>Ready to Try One?</div>
         <h2 style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', marginBottom: 24 }}>Shop the full catalog.</h2>
         <Link href="/shop" className="btn btn-primary">Shop All Soaps</Link>

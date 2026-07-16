@@ -5,6 +5,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import CartDrawer from '@/components/CartDrawer';
 import Preloader from '@/components/Preloader';
+import ProductCarousel from '@/components/ProductCarousel';
 
 // SVG glyphs matching the original bs-chrome.js
 const GLYPHS = {
@@ -99,21 +100,20 @@ function CollectionCard({ c, index }: { c: Collection; index: number }) {
   }, [index]);
 
   return (
-    <a ref={cardRef} className="product" href="/shop" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column' }}>
-      <div className="frame" style={{ aspectRatio: '1/1', marginBottom: 18 }}>
-        {c.tag && <span className="product-tag">{c.tag}</span>}
-        <span className="corner tl"/><span className="corner tr"/>
-        <span className="corner bl"/><span className="corner br"/>
-        <span className="frame-glyph">{GLYPHS[c.glyph]}</span>
-        <span className="frame-caption">Collection Photo</span>
-      </div>
+    <div
+      ref={cardRef}
+      className="product"
+      style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer' }}
+      onClick={() => window.location.href = '/shop'}
+    >
+      <ProductCarousel glyph={c.glyph} label={c.name} tag={c.tag} />
       <div className="product-top">
         <div className="product-name">{c.name}</div>
       </div>
       <div className="product-form">{c.theme} &middot; {c.count} Soaps</div>
-      <p className="product-scent">{c.note}</p>
-      <span className="btn btn-primary btn-sm product-add">Shop the Collection</span>
-    </a>
+      <p className="product-scent" style={{ flex: 1 }}>{c.note}</p>
+      <span className="btn btn-primary btn-sm product-add" onClick={e => { e.stopPropagation(); window.location.href = '/shop'; }}>Shop the Collection</span>
+    </div>
   );
 }
 

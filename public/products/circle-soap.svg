@@ -1,0 +1,32 @@
+<svg width="100%" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Circle soap</title>
+  <defs>
+    <radialGradient id="bgGrad" cx="60%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#daeeff"/>
+      <stop offset="50%" stop-color="#b8d8f0"/>
+      <stop offset="100%" stop-color="#8fbcd8"/>
+    </radialGradient>
+    <radialGradient id="soapGrad" cx="38%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#f2f0ed"/>
+      <stop offset="100%" stop-color="#dbd7d1"/>
+    </radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+    <filter id="subtle"><feGaussianBlur stdDeviation="4"/></filter>
+    <clipPath id="soapClip">
+      <ellipse cx="340" cy="335" rx="208" ry="200"/>
+    </clipPath>
+  </defs>
+  <rect width="680" height="680" fill="url(#bgGrad)"/>
+  <ellipse cx="120" cy="100" rx="180" ry="130" fill="#c8e4f5" opacity="0.45"/>
+  <ellipse cx="580" cy="200" rx="140" ry="100" fill="#b0d2eb" opacity="0.35"/>
+  <ellipse cx="500" cy="580" rx="200" ry="120" fill="#a8ceea" opacity="0.30"/>
+  <ellipse cx="80" cy="520" rx="150" ry="100" fill="#c0ddf0" opacity="0.28"/>
+  <ellipse cx="340" cy="600" rx="250" ry="80" fill="#9ec8e6" opacity="0.22"/>
+  <ellipse cx="350" cy="560" rx="175" ry="30" fill="#5a8aaa" opacity="0.18" filter="url(#soft)"/>
+  <ellipse cx="340" cy="335" rx="208" ry="200" fill="url(#soapGrad)"/>
+  <path d="M 185 260 Q 200 185 290 165" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" opacity="0.65"/>
+  <ellipse cx="340" cy="490" rx="170" ry="28" fill="#b8b0a8" opacity="0.12" filter="url(#subtle)" clip-path="url(#soapClip)"/>
+  <text x="340" y="360" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="400" font-style="italic" fill="#b8b2aa" opacity="0.55" letter-spacing="14">G S</text>
+  <text x="339" y="358" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="400" font-style="italic" fill="#c8c2ba" opacity="0.80" letter-spacing="14">G S</text>
+</svg>

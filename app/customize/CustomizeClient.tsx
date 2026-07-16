@@ -12,41 +12,50 @@ const Soap3D = dynamic(() => import('@/components/Soap3D'), { ssr: false });
 
 type Form = 'Bar' | 'Circle' | 'Bunny';
 const FORMS: { key: Form; label: string; price: number; desc: string }[] = [
-  { key: 'Bar', label: 'Bar', price: 4.55, desc: '4.5 oz cold-process bar' },
-  { key: 'Circle', label: 'Circle', price: 4.55, desc: '3.5 oz river-stone round' },
-  { key: 'Bunny', label: 'Bunny', price: 4.55, desc: '2.5 oz molded bunny' },
+  { key: 'Bar', label: 'Bar', price: 5.50, desc: '4.5 oz cold-process bar' },
+  { key: 'Circle', label: 'Circle', price: 5.50, desc: '3.5 oz river-stone round' },
+  { key: 'Bunny', label: 'Bunny', price: 5.50, desc: '2.5 oz molded bunny' },
 ];
 
 const SCENTS = [
-  { key: 'cedarwood', label: 'Harbor Cedar' },
-  { key: 'sea-salt', label: 'Sea Salt & Sage' },
-  { key: 'bay-rum', label: "Captain's Bay Rum" },
-  { key: 'lavender', label: 'Coastal Lavender' },
-  { key: 'lime', label: "Sailor's Lime" },
-  { key: 'unscented', label: 'Unscented' },
+  { key: 'lemon-verbena', label: 'Lemon Verbena' },
 ];
 
-const COLORS: { key: string; label: string; hex: string; hex2?: string }[] = [
-  { key: 'lemon',  label: 'Lemon Yellow', hex: '#f9e84e' },
-  { key: 'blue',   label: 'Light Blue',   hex: '#aad4f5' },
+const SOLID_COLORS: { key: string; label: string; hex: string }[] = [
+  { key: 'lemon-solid',  label: 'Lemon Yellow', hex: '#f9e84e' },
+  { key: 'blue-solid',   label: 'Light Blue',   hex: '#aad4f5' },
 ];
 
-const BASE_PRICE = 4.55;
+const SWIRL_COLORS: { key: string; label: string; hex1: string; hex2: string }[] = [
+  { key: 'ocean',  label: 'Ocean Swirl',  hex1: '#4a9eca', hex2: '#0D1F2D' },
+  { key: 'lemon',  label: 'Lemon Swirl',  hex1: '#f9e84e', hex2: '#fff8c2' },
+  { key: 'orange', label: 'Orange Swirl', hex1: '#f97316', hex2: '#fed7aa' },
+  { key: 'pink',   label: 'Pink Swirl',   hex1: '#f472b6', hex2: '#fce7f3' },
+];
+
+const BASE_PRICE = 5.50;
 
 export default function CustomizeClient() {
   const [form, setForm] = useState<Form>('Bar');
-  const [scent, setScent] = useState('cedarwood');
-  const [colorKey, setColorKey] = useState('lemon');
+  const [scent, setScent] = useState('lemon-verbena');
+  const [colorMode, setColorMode] = useState<'solid' | 'swirl'>('solid');
+  const [colorKey, setColorKey] = useState('lemon-solid');
   const [engrave, setEngrave] = useState('');
+  const [qty, setQty] = useState(100);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  const selectedColor = COLORS.find(c => c.key === colorKey)!;
-  const swirl: [string, string] | null = selectedColor.hex2
-    ? [selectedColor.hex, selectedColor.hex2]
-    : null;
+  const MOQ = 100;
+  const PRICE_PER_BAR = 5.50;
+
+  const solidMatch = SOLID_COLORS.find(c => c.key === colorKey);
+  const swirlMatch = SWIRL_COLORS.find(c => c.key === colorKey);
+  const selectedColor = solidMatch
+    ? { label: solidMatch.label, hex: solidMatch.hex }
+    : { label: swirlMatch!.label, hex: swirlMatch!.hex1 };
+  const swirl: [string, string] | null = swirlMatch ? [swirlMatch.hex1, swirlMatch.hex2] : null;
   const selectedScent = SCENTS.find(s => s.key === scent)?.label || '';
 
-  const total = BASE_PRICE;
+  const total = PRICE_PER_BAR * qty;
 
   useEffect(() => {
     if (!heroRef.current) return;
@@ -62,7 +71,7 @@ export default function CustomizeClient() {
       const cart = JSON.parse(localStorage.getItem('bs-cart') || '[]');
       const id = `custom-${Date.now()}`;
       const name = `Custom ${form} — ${selectedScent}`;
-      cart.push({ id, name, price: total, form, qty: 1, custom: true });
+      cart.push({ id, name, price: PRICE_PER_BAR, form, qty, engrave: engrave.trim().toUpperCase(), color: selectedColor.label, scent: selectedScent, orderType: 'bulk', custom: true });
       localStorage.setItem('bs-cart', JSON.stringify(cart));
       window.dispatchEvent(new CustomEvent('bs-cart-updated'));
     } catch {}
@@ -113,7 +122,7 @@ export default function CustomizeClient() {
             </div>
           </div>
           <div style={{ marginTop: 12, textAlign: 'center', fontSize: '0.8rem', color: 'var(--text-light)' }}>
-            {form} · {selectedScent} · {selectedColor.label}
+            {form} · {selectedScent} · {selectedColor.label}{swirl ? ' (swirl)' : ''}
           </div>
         </div>
 
@@ -155,29 +164,62 @@ export default function CustomizeClient() {
             </div>
           </div>
 
-          {/* Color */}
+          {/* Colour */}
           <div data-fade>
             <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>Colour</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {COLORS.map(c => (
-                <button
-                  key={c.key}
-                  title={c.label}
-                  onClick={() => setColorKey(c.key)}
-                  style={{
-                    width: 36, height: 36, borderRadius: 4,
-                    background: c.hex2
-                      ? `linear-gradient(135deg, ${c.hex} 50%, ${c.hex2} 50%)`
-                      : c.hex,
-                    border: colorKey === c.key ? '2px solid var(--gold)' : '2px solid var(--gold-line)',
-                    cursor: 'pointer',
-                    transform: colorKey === c.key ? 'scale(1.18)' : 'scale(1)',
-                    transition: 'transform 0.2s, border-color 0.2s',
-                  }}
-                />
-              ))}
+            {/* Solid / Swirl toggle */}
+            <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
+              <button
+                onClick={() => { setColorMode('solid'); setColorKey('lemon-solid'); }}
+                className={colorMode === 'solid' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
+              >Solid</button>
+              <button
+                onClick={() => { setColorMode('swirl'); setColorKey('ocean'); }}
+                className={colorMode === 'swirl' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
+              >Swirl</button>
             </div>
-            <div style={{ marginTop: 8, fontSize: '0.85rem', color: 'var(--text-light)' }}>{selectedColor.label}</div>
+            {/* Solid options */}
+            {colorMode === 'solid' && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {SOLID_COLORS.map(c => (
+                  <button
+                    key={c.key}
+                    onClick={() => setColorKey(c.key)}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                      border: `1.5px solid ${colorKey === c.key ? 'var(--navy)' : 'var(--gold-line)'}`,
+                      background: colorKey === c.key ? 'var(--navy)' : '#fff',
+                      transition: 'all 0.18s',
+                    }}
+                  >
+                    <span style={{ width: 20, height: 20, borderRadius: '50%', flexShrink: 0, background: c.hex, border: '1px solid rgba(0,0,0,0.1)' }} />
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: colorKey === c.key ? '#fff' : 'var(--text-dark)' }}>{c.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+            {/* Swirl options */}
+            {colorMode === 'swirl' && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {SWIRL_COLORS.map(c => (
+                  <button
+                    key={c.key}
+                    onClick={() => setColorKey(c.key)}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                      border: `1.5px solid ${colorKey === c.key ? 'var(--navy)' : 'var(--gold-line)'}`,
+                      background: colorKey === c.key ? 'var(--navy)' : '#fff',
+                      transition: 'all 0.18s',
+                    }}
+                  >
+                    <span style={{ width: 20, height: 20, borderRadius: '50%', flexShrink: 0, background: `linear-gradient(135deg, ${c.hex1} 50%, ${c.hex2} 50%)`, border: '1px solid rgba(0,0,0,0.08)' }} />
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: colorKey === c.key ? '#fff' : 'var(--text-dark)' }}>{c.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Engraving */}
@@ -201,16 +243,35 @@ export default function CustomizeClient() {
             <div style={{ marginTop: 6, fontSize: '0.75rem', color: 'var(--text-light)', textAlign: 'right' }}>{engrave.length}/3</div>
           </div>
 
+          {/* MOQ qty */}
+          <div data-fade>
+            <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>
+              Quantity <span style={{ color: 'var(--gold)' }}>— MOQ {MOQ} bars</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--gold-line)', borderRadius: 2 }}>
+                <button onClick={() => setQty(q => Math.max(MOQ, q - 1))} style={{ width: 40, height: 44, background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer', color: 'var(--text-dark)' }}>−</button>
+                <span style={{ minWidth: 48, textAlign: 'center', fontSize: '0.95rem', fontFamily: 'var(--font-display)' }}>{qty}</span>
+                <button onClick={() => setQty(q => q + 1)} style={{ width: 40, height: 44, background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer', color: 'var(--text-dark)' }}>+</button>
+              </div>
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-light)', fontFamily: 'var(--font-mono)' }}>minimum {MOQ} bars</span>
+            </div>
+          </div>
+
           {/* Summary + CTA */}
           <div data-fade style={{ borderTop: '1px solid var(--gold-line)', paddingTop: 24 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, fontSize: '0.9rem', color: 'var(--text-mid)' }}>
-              <span>Base price</span><span>${BASE_PRICE.toFixed(2)}</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: '0.9rem', color: 'var(--text-mid)' }}>
+              <span>Price per bar</span><span>$5.50</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 20, fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, fontSize: '0.9rem', color: 'var(--text-mid)' }}>
+              <span>Quantity</span><span>{qty} bars</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>
               <span>Total</span><span style={{ color: 'var(--gold)' }}>${total.toFixed(2)}</span>
             </div>
+            
             <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={addToCart}>
-              Add Custom Soap to Cart — ${total.toFixed(2)}
+              Add to Cart — {qty} bars · ${total.toFixed(2)}
             </button>
           </div>
         </div>

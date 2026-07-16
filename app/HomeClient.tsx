@@ -7,12 +7,12 @@ import CartDrawer from '@/components/CartDrawer';
 import Preloader from '@/components/Preloader';
 import { GlyphSvg } from '@/components/GlyphSvg';
 import { BS_PRODUCTS, FORM_GLYPH } from '@/lib/products';
+import ProductCarousel from '@/components/ProductCarousel';
 
 const ARRIVALS = [
-  BS_PRODUCTS.find(p => p.id === 'bunny-little-marlin')!,
-  BS_PRODUCTS.find(p => p.id === 'bar-captains-bay-rum')!,
-  BS_PRODUCTS.find(p => p.id === 'circle-sailors-lime')!,
-  BS_PRODUCTS.find(p => p.id === 'bar-sea-salt-sage')!,
+  BS_PRODUCTS.find(p => p.form === 'Bar')!,
+  BS_PRODUCTS.find(p => p.form === 'Roundstone')!,
+  BS_PRODUCTS.find(p => p.form === 'Bunny')!,
 ];
 
 export default function HomeClient() {
@@ -120,17 +120,11 @@ export default function HomeClient() {
           <div className="grid-4">
             {ARRIVALS.map((p, i) => (
               <article key={p.id} className="product reveal" style={{ animationDelay: `${i * 80}ms` }}>
+                <ProductCarousel glyph={FORM_GLYPH[p.form]} label={p.form} tag={p.tag} href={`/product/${p.id}`} />
                 <Link className="product-link" href={`/product/${p.id}`}>
-                  <div className="frame" style={{ aspectRatio: '1/1', marginBottom: 18 }}>
-                    {p.tag && <span className="product-tag">{p.tag}</span>}
-                    <span className="corner tl" /><span className="corner tr" />
-                    <span className="corner bl" /><span className="corner br" />
-                    <span className="frame-glyph"><GlyphSvg type={FORM_GLYPH[p.form]} /></span>
-                    <span className="frame-caption">{p.form} Soap Photo</span>
-                  </div>
                   <div className="product-top">
                     <div className="product-name">{p.name}</div>
-                    <div className="product-price">${p.price.toFixed(2)}</div>
+                    <div className="product-price">$7.00 <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)', letterSpacing: '0.04em' }}>or $5.50/bar · MOQ 100</span></div>
                   </div>
                   <div className="product-form">{p.form} &middot; {p.scent}</div>
                 </Link>
@@ -153,16 +147,23 @@ export default function HomeClient() {
           </div>
           <div className="cat-tiles">
             {([
-              { form: 'Bar', glyph: 'bar' as const, label: 'The Bar' },
-              { form: 'Circle', glyph: 'circle' as const, label: 'The Circle' },
-              { form: 'Bunny', glyph: 'bunny' as const, label: 'The Bunny' },
+              { form: 'Bar', glyph: 'bar' as const, label: 'The Bar', photo: null },
+              { form: 'Roundstone', glyph: 'circle' as const, label: 'Roundstone Soap', photo: '/products/circle-soap.png' },
+              { form: 'Bunny', glyph: 'bunny' as const, label: 'The Bunny', photo: null },
             ]).map((t, i) => (
               <Link key={t.form} className={`cat-tile reveal${i > 0 ? ` d${i + 1}` : ''}`} href="/shop">
                 <div className="frame">
                   <span className="corner tl" /><span className="corner tr" />
                   <span className="corner bl" /><span className="corner br" />
-                  <span className="frame-glyph"><GlyphSvg type={t.glyph} /></span>
-                  <span className="frame-caption">{t.form} Soap Photo</span>
+                  {t.photo ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={t.photo} alt={t.label} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <>
+                      <span className="frame-glyph"><GlyphSvg type={t.glyph} /></span>
+                      <span className="frame-caption">{t.form} Soap Photo</span>
+                    </>
+                  )}
                 </div>
                 <div className="cat-tile-label">
                   <div className="cat-tile-name">{t.label}</div>

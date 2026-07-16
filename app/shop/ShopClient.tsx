@@ -1,15 +1,18 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import CartDrawer from '@/components/CartDrawer';
 import Preloader from '@/components/Preloader';
 import { GlyphSvg } from '@/components/GlyphSvg';
 import { BS_PRODUCTS, FORM_GLYPH, type Product } from '@/lib/products';
+import ProductCarousel from '@/components/ProductCarousel';
 
 type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'name';
-type FilterForm = 'All' | 'Bar' | 'Circle' | 'Ribbed Circle' | 'Bunny';
+type FilterForm = 'All' | 'Bar' | 'Roundstone' | 'Bunny' | 'Voyager Boat';
+
 
 function sorted(list: Product[], key: SortKey): Product[] {
   const c = [...list];
@@ -21,7 +24,7 @@ function sorted(list: Product[], key: SortKey): Product[] {
 
 function ProductCard({ p, index }: { p: Product; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-
+  const router = useRouter();
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -32,7 +35,7 @@ function ProductCard({ p, index }: { p: Product; index: number }) {
         gsap.set(el, { opacity: 0, y: 36, filter: 'blur(6px)' });
         const anim = gsap.to(el, {
           opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7,
-          delay: (index % 3) * 0.1, ease: 'power3.out',
+          delay: (index % 4) * 0.08, ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' },
         });
         const enter = () => gsap.to(el, { scale: 1.015, duration: 0.3, ease: 'power2.out' });
@@ -58,23 +61,26 @@ function ProductCard({ p, index }: { p: Product; index: number }) {
   };
 
   return (
-    <div ref={ref} className="product" style={{ display: 'flex', flexDirection: 'column' }}>
-      <Link href={`/product/${p.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', flex: 1 }}>
-        <div className="frame" style={{ aspectRatio: '1/1', marginBottom: 18 }}>
-          {p.tag && <span className="product-tag">{p.tag}</span>}
-          <span className="corner tl"/><span className="corner tr"/>
-          <span className="corner bl"/><span className="corner br"/>
-          <span className="frame-glyph"><GlyphSvg type={FORM_GLYPH[p.form]} /></span>
-          <span className="frame-caption">{p.form} — {p.scent}</span>
+    <div ref={ref} className="product" style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+      {/* full-card link sits behind carousel via z-index */}
+      <Link href={`/product/${p.id}`} aria-label={p.name} style={{
+        position: 'absolute', inset: 0, zIndex: 1,
+        display: 'block', textDecoration: 'none',
+      }} />
+      {/* carousel is z-index 2, its buttons are z-index 4 — above the link */}
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <ProductCarousel glyph={FORM_GLYPH[p.form]} label={p.form} tag={p.tag} href={`/product/${p.id}`} />
+      </div>
+      <div className="product-top" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="product-name">{p.name}</div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
+          <div className="product-price">$7.00</div>
+          <div style={{ fontSize: '0.7rem', color: 'var(--text-light)', fontFamily: 'var(--font-mono)', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>$5.50/bar · MOQ 100</div>
         </div>
-        <div className="product-top">
-          <div className="product-name">{p.name}</div>
-          <div className="product-price">${p.price}</div>
-        </div>
-        <div className="product-form">{p.form} &middot; {p.scent}</div>
-        <p className="product-scent">{p.note}</p>
-      </Link>
-      <button className="btn btn-primary btn-sm product-add" onClick={addToCart}>Add to Cart</button>
+      </div>
+      <div className="product-form" style={{ position: 'relative', zIndex: 2 }}>{p.form} &middot; {p.scent}</div>
+      <p className="product-scent" style={{ flex: 1, position: 'relative', zIndex: 2 }}>{p.note}</p>
+      <button className="btn btn-primary btn-sm product-add" style={{ position: 'relative', zIndex: 2 }} onClick={addToCart}>Add to Cart</button>
     </div>
   );
 }
@@ -119,14 +125,14 @@ export default function ShopClient() {
         <div className="hero-bg" />
         <div className="crumbs" ref={crumbsRef}><Link href="/">Home</Link> &nbsp;/&nbsp; Shop</div>
         <h1 ref={h1Ref}>Every bar<br/>we make.</h1>
-        <p ref={subRef}>Twelve soaps. Three forms. One recipe standard.</p>
+        <p ref={subRef}>Four forms. One recipe standard.</p>
       </header>
 
       <div className="shop-wrap">
         <div className="shop-inner">
           {/* Filter chips */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
-            {(['All', 'Bar', 'Circle', 'Ribbed Circle', 'Bunny'] as FilterForm[]).map(f => (
+            {(['All', 'Bar', 'Roundstone', 'Bunny', 'Voyager Boat'] as FilterForm[]).map(f => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
@@ -152,7 +158,15 @@ export default function ShopClient() {
           </div>
 
           <div className="shop-grid">
-            {list.map((p, i) => <ProductCard key={p.id} p={p} index={i} />)}
+            {([
+              { form: 'Bar', label: 'The Bar' },
+              { form: 'Roundstone', label: 'Roundstone Soap' },
+              { form: 'Bunny', label: 'The Bunny' },
+              { form: 'Voyager Boat', label: 'Voyager Boat' },
+            ] as const).map(({ form, label }, i) => {
+              const p = list.find(x => x.form === form) || BS_PRODUCTS.find(x => x.form === form)!;
+              return p ? <ProductCard key={form} p={{ ...p, name: label }} index={i} /> : null;
+            })}
           </div>
         </div>
       </div>

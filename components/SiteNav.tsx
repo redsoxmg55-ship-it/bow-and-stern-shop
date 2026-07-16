@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { page: 'customize', href: '/customize', label: 'Customize' },
   { page: 'collections', href: '/collections', label: 'Collections' },
   { page: 'catalog', href: '/catalog', label: 'Catalog' },
-  { page: 'about', href: '/about', label: 'About' },
+  { page: 'private', href: '/private-clients', label: 'Private Clients' },
 ];
 
 const AB_MESSAGES = [

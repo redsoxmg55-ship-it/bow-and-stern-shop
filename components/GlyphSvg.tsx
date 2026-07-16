@@ -1,12 +1,11 @@
-export function GlyphSvg({ type }: { type: 'bar' | 'circle' | 'ribbed' | 'bunny' }) {
-  if (type === 'ribbed') return (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
-      <circle cx="32" cy="32" r="19"/>
-      <path d="M13.5 24 Q32 21 50.5 24" opacity=".6"/>
-      <path d="M13 28 Q32 25 51 28" opacity=".5"/>
-      <path d="M13 32 Q32 29 51 32" opacity=".5"/>
-      <path d="M13.5 36 Q32 33 50.5 36" opacity=".5"/>
-      <path d="M14.5 40 Q32 37 49.5 40" opacity=".6"/>
+export function GlyphSvg({ type }: { type: 'bar' | 'circle' | 'bunny' | 'voyager' }) {
+  if (type === 'voyager') return (
+    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 42 Q20 36 32 38 Q44 40 56 42 L50 48 Q40 52 32 52 Q24 52 14 48 Z"/>
+      <path d="M32 38 L32 18"/>
+      <path d="M32 18 L46 34"/>
+      <path d="M32 18 L22 30" opacity=".55"/>
+      <path d="M10 44 Q32 40 54 44" opacity=".4"/>
     </svg>
   );
   if (type === 'circle') return (

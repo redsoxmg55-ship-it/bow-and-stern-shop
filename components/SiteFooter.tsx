@@ -66,7 +66,11 @@ export default function SiteFooter() {
 
       <div className="footer-bottom">
         <span className="footer-copy">&copy; {new Date().getFullYear()} Bow &amp; Stern Soap Co. All rights reserved.</span>
-        <span className="footer-made">Made in the USA 🇺🇸</span>
+        <span style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
+          <Link href="/privacy" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.06em', textDecoration: 'none' }}>Privacy Policy</Link>
+          <Link href="/terms" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'rgba(255,255,255,0.45)', letterSpacing: '0.06em', textDecoration: 'none' }}>Terms of Service</Link>
+          <span className="footer-made">Made in the USA 🇺🇸</span>
+        </span>
       </div>
     </footer>
   );
