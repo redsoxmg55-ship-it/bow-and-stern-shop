@@ -123,13 +123,21 @@ export default function ProductClient({ id }: { id: string }) {
             {/* Scent */}
             <div data-fade style={{ marginBottom: 32 }}>
               <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>Scent</div>
-              <div style={{ display: 'flex', gap: 8 }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {SCENTS.map(s => (
                   <button
                     key={s.key}
                     onClick={() => setScent(s.key)}
-                    className={scent === s.key ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-                  >{s.label}</button>
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                      border: `1.5px solid ${scent === s.key ? 'var(--nantucket)' : 'var(--gold-line)'}`,
+                      background: scent === s.key ? 'var(--nantucket)' : '#fff',
+                      transition: 'all 0.18s',
+                    }}
+                  >
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: scent === s.key ? '#fff' : 'var(--text-dark)' }}>{s.label}</span>
+                  </button>
                 ))}
               </div>
             </div>
@@ -149,14 +157,20 @@ export default function ProductClient({ id }: { id: string }) {
               <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>Colour</div>
               {orderType === 'bulk' && (
                 <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
-                  <button
-                    onClick={() => { setColorMode('solid'); setColorKey('white'); setCarouselSlide(0); }}
-                    className={colorMode === 'solid' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-                  >Solid</button>
-                  <button
-                    onClick={() => { setColorMode('swirl'); setColorKey('ocean'); setCarouselSlide(1); }}
-                    className={colorMode === 'swirl' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-                  >Swirl</button>
+                  {(['solid', 'swirl'] as const).map(mode => (
+                    <button
+                      key={mode}
+                      onClick={() => { setColorMode(mode); setColorKey(mode === 'solid' ? 'white' : 'ocean'); setCarouselSlide(mode === 'swirl' ? 1 : 0); }}
+                      style={{
+                        padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                        border: `1.5px solid ${colorMode === mode ? 'var(--nantucket)' : 'var(--gold-line)'}`,
+                        background: colorMode === mode ? 'var(--nantucket)' : '#fff',
+                        fontFamily: 'var(--font-display)', fontSize: '0.85rem',
+                        color: colorMode === mode ? '#fff' : 'var(--text-dark)',
+                        transition: 'all 0.18s',
+                      }}
+                    >{mode.charAt(0).toUpperCase() + mode.slice(1)}</button>
+                  ))}
                 </div>
               )}
               {colorMode === 'solid' && (
@@ -207,14 +221,20 @@ export default function ProductClient({ id }: { id: string }) {
                 Engraving {orderType === 'single' ? <span style={{ color: 'var(--gold)', fontWeight: 400 }}>— +$1.00</span> : <span style={{ color: 'var(--gold)', fontWeight: 400 }}>— Included</span>}
               </div>
               <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-                <button
-                  onClick={() => setEngraveEnabled(false)}
-                  className={!engraveEnabled ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-                >Keep Blank</button>
-                <button
-                  onClick={() => setEngraveEnabled(true)}
-                  className={engraveEnabled ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-                >Add Engraving</button>
+                {[{ label: 'Keep Blank', val: false }, { label: 'Add Engraving', val: true }].map(opt => (
+                  <button
+                    key={opt.label}
+                    onClick={() => setEngraveEnabled(opt.val)}
+                    style={{
+                      padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                      border: `1.5px solid ${engraveEnabled === opt.val ? 'var(--nantucket)' : 'var(--gold-line)'}`,
+                      background: engraveEnabled === opt.val ? 'var(--nantucket)' : '#fff',
+                      fontFamily: 'var(--font-display)', fontSize: '0.85rem',
+                      color: engraveEnabled === opt.val ? '#fff' : 'var(--text-dark)',
+                      transition: 'all 0.18s',
+                    }}
+                  >{opt.label}</button>
+                ))}
               </div>
               {engraveEnabled && (
                 <div>
@@ -240,20 +260,23 @@ export default function ProductClient({ id }: { id: string }) {
             <div data-fade style={{ marginBottom: 20 }}>
               <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>Order Type</div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button
-                  onClick={() => { setOrderType('single'); setColorMode('solid'); setColorKey('white'); setCarouselSlide(0); }}
-                  className={orderType === 'single' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-                  style={{ flex: 1, textAlign: 'center' }}
-                >
-                  Single Bar — ${SINGLE_PRICE.toFixed(2)}
-                </button>
-                <button
-                  onClick={() => setOrderType('bulk')}
-                  className={orderType === 'bulk' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-                  style={{ flex: 1, textAlign: 'center' }}
-                >
-                  Bulk (100) — $550.00
-                </button>
+                {[
+                  { label: `Single Bar — $${SINGLE_PRICE.toFixed(2)}`, val: 'single' as const },
+                  { label: 'Bulk (100) — $550.00', val: 'bulk' as const },
+                ].map(opt => (
+                  <button
+                    key={opt.val}
+                    onClick={() => { setOrderType(opt.val); if (opt.val === 'single') { setColorMode('solid'); setColorKey('white'); setCarouselSlide(0); } }}
+                    style={{
+                      flex: 1, padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                      border: `1.5px solid ${orderType === opt.val ? 'var(--nantucket)' : 'var(--gold-line)'}`,
+                      background: orderType === opt.val ? 'var(--nantucket)' : '#fff',
+                      fontFamily: 'var(--font-display)', fontSize: '0.85rem',
+                      color: orderType === opt.val ? '#fff' : 'var(--text-dark)',
+                      transition: 'all 0.18s', textAlign: 'center',
+                    }}
+                  >{opt.label}</button>
+                ))}
               </div>
               {orderType === 'bulk' && (
                 <div style={{ marginTop: 8, fontSize: '0.8rem', color: 'var(--text-light)' }}>
