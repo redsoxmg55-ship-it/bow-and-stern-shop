@@ -9,7 +9,6 @@ const NAV_LINKS = [
   { page: 'shop', href: '/shop', label: 'Shop' },
   { page: 'customize', href: '/customize', label: 'Customize' },
   { page: 'collections', href: '/collections', label: 'Collections' },
-  { page: 'catalog', href: '/catalog', label: 'Catalog' },
   { page: 'private', href: '/private-clients', label: 'Private Clients' },
 ];
 

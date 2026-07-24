@@ -45,7 +45,6 @@ export default function SiteFooter() {
           <Link href="/shop">Bunny Soap</Link>
           <Link href="/customize">Customize a Bar</Link>
           <Link href="/collections">Collections</Link>
-          <Link href="/catalog">Photo Catalog</Link>
         </div>
 
         <div className="footer-col">
