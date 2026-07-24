@@ -19,6 +19,7 @@ const FORMS: { key: Form; label: string; price: number; desc: string }[] = [
 
 const SCENTS = [
   { key: 'lemon-verbena', label: 'Lemon Verbena' },
+  { key: 'sandalwood', label: 'Sandalwood' },
 ];
 
 const SOLID_COLORS: { key: string; label: string; hex: string }[] = [
