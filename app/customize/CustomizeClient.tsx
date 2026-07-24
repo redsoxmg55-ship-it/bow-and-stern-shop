@@ -22,8 +22,10 @@ const SCENTS = [
 ];
 
 const SOLID_COLORS: { key: string; label: string; hex: string }[] = [
-  { key: 'lemon-solid',  label: 'Lemon Yellow', hex: '#f9e84e' },
-  { key: 'blue-solid',   label: 'Light Blue',   hex: '#aad4f5' },
+  { key: 'lemon-solid',      label: 'Lemon Yellow', hex: '#f9e84e' },
+  { key: 'blue-solid',       label: 'Light Blue',   hex: '#aad4f5' },
+  { key: 'ocean-wave-solid', label: 'Ocean Wave',   hex: '#2E86AB' },
+  { key: 'pink-rose-solid',  label: 'Pink Rose',    hex: '#F4A0B0' },
 ];
 
 const SWIRL_COLORS: { key: string; label: string; hex1: string; hex2: string }[] = [

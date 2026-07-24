@@ -21,9 +21,11 @@ export default function ProductClient({ id }: { id: string }) {
   const [carouselSlide, setCarouselSlide] = useState(0);
 
   const SOLID_COLORS = [
-    { key: 'white',  label: 'Plain White',   hex: '#ffffff', slide: 0 },
-    { key: 'lemon',  label: 'Lemon Yellow',  hex: '#f9e84e', slide: 0 },
-    { key: 'blue',   label: 'Light Blue',    hex: '#aad4f5', slide: 0 },
+    { key: 'white',      label: 'Plain White',   hex: '#ffffff', slide: 0 },
+    { key: 'lemon',      label: 'Lemon Yellow',  hex: '#f9e84e', slide: 0 },
+    { key: 'blue',       label: 'Light Blue',    hex: '#aad4f5', slide: 0 },
+    { key: 'ocean-wave', label: 'Ocean Wave',    hex: '#2E86AB', slide: 0 },
+    { key: 'pink-rose',  label: 'Pink Rose',     hex: '#F4A0B0', slide: 0 },
   ] as const;
 
   const SWIRL_COLORS = [
