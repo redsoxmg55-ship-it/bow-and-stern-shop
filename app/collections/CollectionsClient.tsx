@@ -61,7 +61,7 @@ function sorted(list: Collection[], key: SortKey): Collection[] {
 
 // Individual collection card with per-card GSAP entrance
 function CollectionCard({ c, index }: { c: Collection; index: number }) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
