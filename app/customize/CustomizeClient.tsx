@@ -162,6 +162,29 @@ export default function CustomizeClient() {
             </div>
           </div>
 
+          {/* Colour */}
+          <div data-fade>
+            <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>Colour</div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {SOLID_COLORS.map(c => (
+                <button
+                  key={c.key}
+                  onClick={() => setColorKey(c.key)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                    border: `1.5px solid ${colorKey === c.key ? 'var(--navy)' : 'var(--gold-line)'}`,
+                    background: colorKey === c.key ? 'var(--navy)' : '#fff',
+                    transition: 'all 0.18s',
+                  }}
+                >
+                  <span style={{ width: 20, height: 20, borderRadius: '50%', flexShrink: 0, background: c.hex, border: '1px solid rgba(0,0,0,0.1)' }} />
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: colorKey === c.key ? '#fff' : 'var(--text-dark)' }}>{c.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Engraving */}
           <div data-fade>
             <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>
