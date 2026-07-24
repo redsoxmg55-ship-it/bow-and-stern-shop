@@ -18,6 +18,11 @@ export default function ProductClient({ id }: { id: string }) {
   const [engraveEnabled, setEngraveEnabled] = useState(false);
   const [colorMode, setColorMode] = useState<'solid' | 'swirl'>('solid');
   const [colorKey, setColorKey] = useState('white');
+  const [scent, setScent] = useState<'lemon-verbena' | 'sandalwood'>('lemon-verbena');
+  const SCENTS = [
+    { key: 'lemon-verbena' as const, label: 'Lemon Verbena' },
+    { key: 'sandalwood' as const, label: 'Sandalwood' },
+  ];
   const [carouselSlide, setCarouselSlide] = useState(0);
 
   const SOLID_COLORS = [
@@ -62,7 +67,7 @@ export default function ProductClient({ id }: { id: string }) {
       const cart = JSON.parse(localStorage.getItem('bs-cart') || '[]');
       const existing = cart.find((i: { id: string }) => i.id === p.id);
       if (existing) existing.qty += qty;
-      else cart.push({ id: p.id, name: p.name, price: orderType === 'bulk' ? BULK_PRICE : SINGLE_PRICE, form: p.form, qty: activeQty, engrave: engraveEnabled ? engrave : '', orderType, color: colorLabel });
+      else cart.push({ id: p.id, name: p.name, price: orderType === 'bulk' ? BULK_PRICE : SINGLE_PRICE, form: p.form, qty: activeQty, engrave: engraveEnabled ? engrave : '', orderType, color: colorLabel, scent: SCENTS.find(s => s.key === scent)?.label });
       localStorage.setItem('bs-cart', JSON.stringify(cart));
       window.dispatchEvent(new CustomEvent('bs-cart-updated'));
     } catch {}
@@ -115,12 +120,16 @@ export default function ProductClient({ id }: { id: string }) {
 
             <p data-fade style={{ color: 'var(--text-mid)', lineHeight: 1.7, marginBottom: 32 }}>{p.blurb}</p>
 
-            {/* Notes */}
+            {/* Scent */}
             <div data-fade style={{ marginBottom: 32 }}>
-              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12 }}>SCENT NOTES</div>
+              <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>Scent</div>
               <div style={{ display: 'flex', gap: 8 }}>
-                {p.notes.map(n => (
-                  <span key={n} style={{ padding: '4px 12px', border: '1px solid var(--gold-line)', borderRadius: 2, fontSize: '0.85rem', color: 'var(--text-mid)' }}>{n}</span>
+                {SCENTS.map(s => (
+                  <button
+                    key={s.key}
+                    onClick={() => setScent(s.key)}
+                    className={scent === s.key ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
+                  >{s.label}</button>
                 ))}
               </div>
             </div>
