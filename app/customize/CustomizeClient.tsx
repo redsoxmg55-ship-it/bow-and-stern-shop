@@ -40,8 +40,7 @@ const BASE_PRICE = 5.50;
 export default function CustomizeClient() {
   const [form, setForm] = useState<Form>('Bar');
   const [scent, setScent] = useState('lemon-verbena');
-  const [colorMode, setColorMode] = useState<'solid' | 'swirl'>('solid');
-  const [colorKey, setColorKey] = useState('lemon-solid');
+  const [colorKey, setColorKey] = useState('white-solid');
   const [engrave, setEngrave] = useState('');
   const [qty, setQty] = useState(100);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -49,12 +48,9 @@ export default function CustomizeClient() {
   const MOQ = 100;
   const PRICE_PER_BAR = 5.50;
 
-  const solidMatch = SOLID_COLORS.find(c => c.key === colorKey);
-  const swirlMatch = SWIRL_COLORS.find(c => c.key === colorKey);
-  const selectedColor = solidMatch
-    ? { label: solidMatch.label, hex: solidMatch.hex }
-    : { label: swirlMatch!.label, hex: swirlMatch!.hex1 };
-  const swirl: [string, string] | null = swirlMatch ? [swirlMatch.hex1, swirlMatch.hex2] : null;
+  const solidMatch = SOLID_COLORS.find(c => c.key === colorKey) ?? SOLID_COLORS[0];
+  const selectedColor = { label: solidMatch.label, hex: solidMatch.hex };
+  const swirl: [string, string] | null = null;
   const selectedScent = SCENTS.find(s => s.key === scent)?.label || '';
 
   const total = PRICE_PER_BAR * qty;
@@ -169,59 +165,24 @@ export default function CustomizeClient() {
           {/* Colour */}
           <div data-fade>
             <div className="mono" style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 12, textTransform: 'uppercase' }}>Colour</div>
-            {/* Solid / Swirl toggle */}
-            <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
-              <button
-                onClick={() => { setColorMode('solid'); setColorKey('lemon-solid'); }}
-                className={colorMode === 'solid' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-              >Solid</button>
-              <button
-                onClick={() => { setColorMode('swirl'); setColorKey('ocean'); }}
-                className={colorMode === 'swirl' ? 'btn btn-primary btn-sm' : 'btn btn-outline btn-sm'}
-              >Swirl</button>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              {SOLID_COLORS.map(c => (
+                <button
+                  key={c.key}
+                  onClick={() => setColorKey(c.key)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
+                    border: `1.5px solid ${colorKey === c.key ? 'var(--navy)' : 'var(--gold-line)'}`,
+                    background: colorKey === c.key ? 'var(--navy)' : '#fff',
+                    transition: 'all 0.18s',
+                  }}
+                >
+                  <span style={{ width: 20, height: 20, borderRadius: '50%', flexShrink: 0, background: c.hex, border: '1px solid rgba(0,0,0,0.1)' }} />
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: colorKey === c.key ? '#fff' : 'var(--text-dark)' }}>{c.label}</span>
+                </button>
+              ))}
             </div>
-            {/* Solid options */}
-            {colorMode === 'solid' && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                {SOLID_COLORS.map(c => (
-                  <button
-                    key={c.key}
-                    onClick={() => setColorKey(c.key)}
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
-                      border: `1.5px solid ${colorKey === c.key ? 'var(--navy)' : 'var(--gold-line)'}`,
-                      background: colorKey === c.key ? 'var(--navy)' : '#fff',
-                      transition: 'all 0.18s',
-                    }}
-                  >
-                    <span style={{ width: 20, height: 20, borderRadius: '50%', flexShrink: 0, background: c.hex, border: '1px solid rgba(0,0,0,0.1)' }} />
-                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: colorKey === c.key ? '#fff' : 'var(--text-dark)' }}>{c.label}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-            {/* Swirl options */}
-            {colorMode === 'swirl' && (
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                {SWIRL_COLORS.map(c => (
-                  <button
-                    key={c.key}
-                    onClick={() => setColorKey(c.key)}
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      padding: '8px 14px', borderRadius: 3, cursor: 'pointer',
-                      border: `1.5px solid ${colorKey === c.key ? 'var(--navy)' : 'var(--gold-line)'}`,
-                      background: colorKey === c.key ? 'var(--navy)' : '#fff',
-                      transition: 'all 0.18s',
-                    }}
-                  >
-                    <span style={{ width: 20, height: 20, borderRadius: '50%', flexShrink: 0, background: `linear-gradient(135deg, ${c.hex1} 50%, ${c.hex2} 50%)`, border: '1px solid rgba(0,0,0,0.08)' }} />
-                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: colorKey === c.key ? '#fff' : 'var(--text-dark)' }}>{c.label}</span>
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Engraving */}
