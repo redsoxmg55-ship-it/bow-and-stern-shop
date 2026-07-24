@@ -10,11 +10,10 @@ import Preloader from '@/components/Preloader';
 // Three.js component — SSR disabled (WebGL requires browser)
 const Soap3D = dynamic(() => import('@/components/Soap3D'), { ssr: false });
 
-type Form = 'Bar' | 'Circle' | 'Bunny';
+type Form = 'Bar' | 'Circle';
 const FORMS: { key: Form; label: string; price: number; desc: string }[] = [
   { key: 'Bar', label: 'Bar', price: 5.50, desc: '4.5 oz cold-process bar' },
   { key: 'Circle', label: 'Circle', price: 5.50, desc: '3.5 oz river-stone round' },
-  { key: 'Bunny', label: 'Bunny', price: 5.50, desc: '2.5 oz molded bunny' },
 ];
 
 const SCENTS = [

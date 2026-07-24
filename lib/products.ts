@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   name: string;
-  form: 'Bar' | 'Roundstone' | 'Bunny' | 'Voyager Boat';
+  form: 'Bar' | 'Roundstone' | 'Voyager Boat';
   scent: string;
   price: number;
   tag: string;
@@ -27,12 +27,8 @@ export const BS_PRODUCTS: Product[] = [
   { id: 'circle-coastal-lavender', name: 'Coastal Lavender', form: 'Roundstone',   scent: LV_NOTE, price: 12, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Bath soap' },
   { id: 'voyager-open-water',   name: 'Open Water',          form: 'Voyager Boat', scent: LV_NOTE, price: 14, tag: 'New',       note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.8 oz', best: 'Gift & display' },
   { id: 'voyager-north-star',   name: 'North Star',          form: 'Voyager Boat', scent: LV_NOTE, price: 14, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.8 oz', best: 'Gift' },
-  { id: 'bunny-little-marlin',  name: 'Little Marlin',       form: 'Bunny',        scent: LV_NOTE, price: 9,  tag: 'New',       note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '2.5 oz', best: 'Kids & gifts' },
-  { id: 'bunny-honey-oat',      name: 'Honey & Oat Bunny',   form: 'Bunny',        scent: LV_NOTE, price: 10, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '2.5 oz', best: 'Dry skin' },
-  { id: 'bunny-lemon-buoy',     name: 'Lemon Buoy Bunny',    form: 'Bunny',        scent: LV_NOTE, price: 10, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '2.5 oz', best: 'Favors' },
-  { id: 'bunny-sea-foam',       name: 'Sea Foam Bunny',       form: 'Bunny',        scent: LV_NOTE, price: 10, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '2.5 oz', best: 'Everyday gift' },
 ];
 
-export const FORM_GLYPH: Record<string, 'bar' | 'circle' | 'bunny' | 'voyager'> = {
-  Bar: 'bar', Roundstone: 'circle', Bunny: 'bunny', 'Voyager Boat': 'voyager',
+export const FORM_GLYPH: Record<string, 'bar' | 'circle' | 'voyager'> = {
+  Bar: 'bar', Roundstone: 'circle', 'Voyager Boat': 'voyager',
 };

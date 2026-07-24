@@ -24,7 +24,7 @@ const PERKS = [
   },
 ];
 
-const SOAP_FORMS = ['Bar', 'Roundstone', 'Bunny', 'Voyager Boat'];
+const SOAP_FORMS = ['Bar', 'Roundstone', 'Voyager Boat'];
 
 const inputBase: React.CSSProperties = {
   width: '100%', padding: '13px 16px', background: '#fff',

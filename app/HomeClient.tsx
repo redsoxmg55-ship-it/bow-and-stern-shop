@@ -12,7 +12,6 @@ import ProductCarousel from '@/components/ProductCarousel';
 const ARRIVALS = [
   BS_PRODUCTS.find(p => p.form === 'Bar')!,
   BS_PRODUCTS.find(p => p.form === 'Roundstone')!,
-  BS_PRODUCTS.find(p => p.form === 'Bunny')!,
 ];
 
 export default function HomeClient() {
@@ -89,7 +88,7 @@ export default function HomeClient() {
             <div className="hero-bg" style={{ background: 'radial-gradient(120% 90% at 72% 8%, rgba(184,149,90,.18), transparent 58%), linear-gradient(160deg, #0D1F2D 0%, #1B3A4B 130%)' }} />
             <span className="corner corner-lg tl" /><span className="corner corner-lg tr" />
             <span className="corner corner-lg bl" /><span className="corner corner-lg br" />
-            <span className="vv-slide-glyph"><GlyphSvg type="bunny" /></span>
+            <span className="vv-slide-glyph"><GlyphSvg type="voyager" /></span>
             <span className="vv-slide-caption">Lifestyle Campaign Photo</span>
           </div>
           <div className="vv-slide-content">
@@ -149,7 +148,7 @@ export default function HomeClient() {
             {([
               { form: 'Bar', glyph: 'bar' as const, label: 'The Bar', photo: null },
               { form: 'Roundstone', glyph: 'circle' as const, label: 'Roundstone Soap', photo: '/products/circle-soap.png' },
-              { form: 'Bunny', glyph: 'bunny' as const, label: 'The Bunny', photo: null },
+              { form: 'Voyager Boat', glyph: 'voyager' as const, label: 'Voyager Boat', photo: null },
             ]).map((t, i) => (
               <Link key={t.form} className={`cat-tile reveal${i > 0 ? ` d${i + 1}` : ''}`} href="/shop">
                 <div className="frame">

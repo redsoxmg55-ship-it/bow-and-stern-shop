@@ -24,14 +24,6 @@ const GLYPHS = {
       <path d="M19 24 Q21 20 26 18" opacity=".5"/>
     </svg>
   ),
-  bunny: (
-    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round">
-      <path d="M8 40 C7 33 12 29 18 29 C20 25 23 25 25 29 C28 31 29 31 32 29 C40 20 53 24 56 34 C59 40 55 45 47 45 L15 45 C9 45 8 45 8 40 Z"/>
-      <path d="M25 28 Q27 20 32 25" opacity=".7"/>
-      <circle cx="16.5" cy="36" r="1.2" fill="currentColor" stroke="none"/>
-      <path d="M8 39 Q11 41 13.5 39.5" opacity=".5"/>
-    </svg>
-  ),
 };
 
 interface Collection {

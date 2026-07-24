@@ -42,7 +42,6 @@ export default function SiteFooter() {
           <Link href="/shop">All Soaps</Link>
           <Link href="/shop">Bar Soap</Link>
           <Link href="/shop">Circle Soap</Link>
-          <Link href="/shop">Bunny Soap</Link>
           <Link href="/customize">Customize a Bar</Link>
           <Link href="/collections">Collections</Link>
         </div>

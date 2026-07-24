@@ -11,7 +11,7 @@ import { BS_PRODUCTS, FORM_GLYPH, type Product } from '@/lib/products';
 import ProductCarousel from '@/components/ProductCarousel';
 
 type SortKey = 'featured' | 'price-asc' | 'price-desc' | 'name';
-type FilterForm = 'All' | 'Bar' | 'Roundstone' | 'Bunny' | 'Voyager Boat';
+type FilterForm = 'All' | 'Bar' | 'Roundstone' | 'Voyager Boat';
 
 
 function sorted(list: Product[], key: SortKey): Product[] {
@@ -132,7 +132,7 @@ export default function ShopClient() {
         <div className="shop-inner">
           {/* Filter chips */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
-            {(['All', 'Bar', 'Roundstone', 'Bunny', 'Voyager Boat'] as FilterForm[]).map(f => (
+            {(['All', 'Bar', 'Roundstone', 'Voyager Boat'] as FilterForm[]).map(f => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
@@ -161,7 +161,6 @@ export default function ShopClient() {
             {([
               { form: 'Bar', label: 'The Bar' },
               { form: 'Roundstone', label: 'Roundstone Soap' },
-              { form: 'Bunny', label: 'The Bunny' },
               { form: 'Voyager Boat', label: 'Voyager Boat' },
             ] as const).map(({ form, label }, i) => {
               const p = list.find(x => x.form === form) || BS_PRODUCTS.find(x => x.form === form)!;

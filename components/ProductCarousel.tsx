@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { GlyphSvg } from '@/components/GlyphSvg';
 
-type GlyphType = 'bar' | 'circle' | 'bunny' | 'voyager';
+type GlyphType = 'bar' | 'circle' | 'voyager';
 
 interface Props {
   glyph: GlyphType;
