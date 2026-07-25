@@ -60,7 +60,7 @@ export default function AboutClient() {
         <div className="crumbs" data-hero><Link href="/">Home</Link> &nbsp;/&nbsp; About</div>
         <div className="eyebrow" data-hero>Small-batch. Intentional. Honest.</div>
         <h1 data-hero>Made by hand,<br/>sold by the bar.</h1>
-        <p data-hero>Bow &amp; Stern started on a kitchen counter in coastal Maine. It&apos;s still essentially that — just with a proper curing rack.</p>
+        <p data-hero>Bow &amp; Stern started on a kitchen counter in New England. It&apos;s still essentially that — just with a proper curing rack.</p>
       </header>
 
       {/* Founder split */}
@@ -89,7 +89,7 @@ export default function AboutClient() {
             The first batch was a gift. The second was to see if we could repeat it. By the tenth we had a process, and by the hundredth we had a company. Still the same recipe.
           </p>
           <p style={{ color: 'var(--text-mid)', lineHeight: 1.7 }}>
-            Every bar is hand-poured in coastal Maine using cold-process saponification — the slow method that preserves more of the glycerin your skin actually wants.
+            Every bar is hand-poured in New England using cold-process saponification — the slow method that preserves more of the glycerin your skin actually wants.
           </p>
         </div>
       </section>
