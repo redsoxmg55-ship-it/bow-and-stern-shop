@@ -3,14 +3,12 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
-  // Redirect vercel.app preview URLs to the canonical domain
+  const response = NextResponse.next();
+  // Tell search engines not to index the Vercel preview domain
   if (host.includes('vercel.app')) {
-    const url = request.nextUrl.clone();
-    url.host = 'shopbowandsternsoap.com';
-    url.protocol = 'https:';
-    return NextResponse.redirect(url, 301);
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow');
   }
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
