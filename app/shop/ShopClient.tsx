@@ -150,8 +150,7 @@ export default function ShopClient() {
           </div>
 
           <div className="shop-main-head" ref={headRef}>
-            <div className="shop-count"><strong>{list.length}</strong> {list.length === 1 ? 'soap' : 'soaps'}</div>
-            <div className="shop-sort">
+<div className="shop-sort">
               <label htmlFor="sort">Sort</label>
               <select id="sort" value={sortKey} onChange={e => setSortKey(e.target.value as SortKey)}>
                 <option value="featured">Featured</option>
