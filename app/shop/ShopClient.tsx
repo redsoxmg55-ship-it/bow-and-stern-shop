@@ -79,7 +79,6 @@ function ProductCard({ p, index }: { p: Product; index: number }) {
         </div>
       </div>
       <div className="product-form" style={{ position: 'relative', zIndex: 2 }}>{p.form}</div>
-      <p className="product-scent" style={{ flex: 1, position: 'relative', zIndex: 2 }}>{p.note}</p>
       <button className="btn btn-primary btn-sm product-add" style={{ position: 'relative', zIndex: 2 }} onClick={addToCart}>Add to Cart</button>
     </div>
   );
