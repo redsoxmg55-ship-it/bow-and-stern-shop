@@ -69,12 +69,13 @@ export default function HomeClient() {
       <section className="vv-hero">
         {/* Slide 1 */}
         <div className={`vv-slide${slide === 0 ? ' active' : ''}`}>
-          <div className="vv-slide-bg">
-            <div className="hero-bg" />
+          <div className="vv-slide-bg" style={{
+            backgroundImage: 'linear-gradient(rgba(13,31,45,0.5) 0%, rgba(13,31,45,0.4) 100%), url(/carousel1-bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}>
             <span className="corner corner-lg tl" /><span className="corner corner-lg tr" />
             <span className="corner corner-lg bl" /><span className="corner corner-lg br" />
-            <span className="vv-slide-glyph"><GlyphSvg type="bar" /></span>
-            <span className="vv-slide-caption">Lifestyle Campaign Photo</span>
           </div>
           <div className="vv-slide-content">
             <div className="vv-eyebrow">Summer on the Coast</div>
