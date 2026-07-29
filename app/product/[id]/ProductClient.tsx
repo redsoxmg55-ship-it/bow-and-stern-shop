@@ -27,16 +27,16 @@ export default function ProductClient({ id }: { id: string }) {
 
   const SOLID_COLORS = [
     { key: 'white',      label: 'Plain White',  hex: '#ffffff', slide: 0 },
-    { key: 'lemon',      label: 'Lemon Yellow', hex: '#f9e84e', slide: 0 },
-    { key: 'ocean-wave', label: 'Ocean Wave',   hex: '#2E86AB', slide: 0 },
-    { key: 'pink-rose',  label: 'Pink Rose',    hex: '#F4A0B0', slide: 0 },
+    { key: 'lemon',      label: 'Lemon Yellow', hex: '#f9e84e', slide: 1 },
+    { key: 'ocean-wave', label: 'Ocean Wave',   hex: '#2E86AB', slide: 2 },
+    { key: 'pink-rose',  label: 'Pink Rose',    hex: '#F4A0B0', slide: 3 },
   ] as const;
 
   const SWIRL_COLORS = [
-    { key: 'ocean',  label: 'Ocean Swirl',  hex1: '#4a9eca', hex2: '#0D1F2D', slide: 1 },
-    { key: 'lemon',  label: 'Lemon Swirl',  hex1: '#f9e84e', hex2: '#fff8c2', slide: 0 },
-    { key: 'orange', label: 'Orange Swirl', hex1: '#f97316', hex2: '#fed7aa', slide: 0 },
-    { key: 'pink',   label: 'Pink Swirl',   hex1: '#f472b6', hex2: '#fce7f3', slide: 0 },
+    { key: 'ocean',  label: 'Ocean Swirl',  hex1: '#4a9eca', hex2: '#0D1F2D', slide: 0 },
+    { key: 'lemon',  label: 'Lemon Swirl',  hex1: '#f9e84e', hex2: '#fff8c2', slide: 1 },
+    { key: 'orange', label: 'Orange Swirl', hex1: '#f97316', hex2: '#fed7aa', slide: 2 },
+    { key: 'pink',   label: 'Pink Swirl',   hex1: '#f472b6', hex2: '#fce7f3', slide: 3 },
   ] as const;
 
   const activeSolid = SOLID_COLORS.find(c => c.key === colorKey);
@@ -111,8 +111,11 @@ export default function ProductClient({ id }: { id: string }) {
               tag={p.tag}
               activeSlide={carouselSlide}
               onSlideChange={setCarouselSlide}
-              colorHex={colorMode === 'swirl' ? activeSwirl?.hex1 : activeSolid?.hex}
-              colorHex2={colorMode === 'swirl' ? activeSwirl?.hex2 : undefined}
+              slideColors={
+                colorMode === 'swirl'
+                  ? SWIRL_COLORS.map(c => ({ hex: c.hex1, hex2: c.hex2 }))
+                  : SOLID_COLORS.map(c => ({ hex: c.hex }))
+              }
             />
           </div>
 
