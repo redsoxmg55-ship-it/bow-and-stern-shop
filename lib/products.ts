@@ -17,16 +17,16 @@ const LV_BLURB = 'Hand-poured and slow-cured with our signature lemon verbena sc
 const LV_NOTES = ['Lemon Verbena'];
 
 export const BS_PRODUCTS: Product[] = [
-  { id: 'bar-harbor-cedar',     name: 'Spa Bar',             form: 'Bar',          scent: LV_NOTE, price: 12, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Daily bar' },
-  { id: 'bar-sea-salt-sage',    name: 'Sea Salt & Sage',     form: 'Bar',          scent: LV_NOTE, price: 12, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Morning wash' },
-  { id: 'bar-captains-bay-rum', name: "Captain's Bay Rum",   form: 'Bar',          scent: LV_NOTE, price: 14, tag: 'Bestseller', note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Post-shave' },
-  { id: 'bar-driftwood-amber',  name: 'Driftwood & Amber',   form: 'Bar',          scent: LV_NOTE, price: 13, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Evening bar' },
-  { id: 'circle-tide-pool-mint',name: 'The Roundstone Soap', form: 'Roundstone',   scent: LV_NOTE, price: 11, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Wake-up wash' },
-  { id: 'circle-sailors-lime',  name: "Sailor's Lime",       form: 'Roundstone',   scent: LV_NOTE, price: 11, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Hand soap' },
-  { id: 'circle-naked-hull',    name: 'Naked Hull',          form: 'Roundstone',   scent: LV_NOTE, price: 10, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Sensitive skin' },
-  { id: 'circle-coastal-lavender', name: 'Coastal Lavender', form: 'Roundstone',   scent: LV_NOTE, price: 12, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Bath soap' },
-  { id: 'voyager-open-water',   name: 'Open Water',          form: 'Voyager Boat', scent: LV_NOTE, price: 14, tag: 'New',       note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.8 oz', best: 'Gift & display' },
-  { id: 'voyager-north-star',   name: 'North Star',          form: 'Voyager Boat', scent: LV_NOTE, price: 14, tag: '',          note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.8 oz', best: 'Gift' },
+  { id: 'bar-harbor-cedar',     name: 'Spa Bar',             form: 'Bar',          scent: LV_NOTE, price: 12, tag: 'Sold Out',      note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Daily bar' },
+  { id: 'bar-sea-salt-sage',    name: 'Sea Salt & Sage',     form: 'Bar',          scent: LV_NOTE, price: 12, tag: 'Sold Out',      note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Morning wash' },
+  { id: 'bar-captains-bay-rum', name: "Captain's Bay Rum",   form: 'Bar',          scent: LV_NOTE, price: 14, tag: 'Sold Out',      note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Post-shave' },
+  { id: 'bar-driftwood-amber',  name: 'Driftwood & Amber',   form: 'Bar',          scent: LV_NOTE, price: 13, tag: 'Sold Out',      note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '4.5 oz', best: 'Evening bar' },
+  { id: 'circle-tide-pool-mint',name: 'The Roundstone Soap', form: 'Roundstone',   scent: LV_NOTE, price: 11, tag: 'Low Inventory', note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Wake-up wash' },
+  { id: 'circle-sailors-lime',  name: "Sailor's Lime",       form: 'Roundstone',   scent: LV_NOTE, price: 11, tag: 'Low Inventory', note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Hand soap' },
+  { id: 'circle-naked-hull',    name: 'Naked Hull',          form: 'Roundstone',   scent: LV_NOTE, price: 10, tag: 'Low Inventory', note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Sensitive skin' },
+  { id: 'circle-coastal-lavender', name: 'Coastal Lavender', form: 'Roundstone',   scent: LV_NOTE, price: 12, tag: 'Low Inventory', note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.5 oz', best: 'Bath soap' },
+  { id: 'voyager-open-water',   name: 'Open Water',          form: 'Voyager Boat', scent: LV_NOTE, price: 14, tag: 'Sold Out',      note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.8 oz', best: 'Gift & display' },
+  { id: 'voyager-north-star',   name: 'North Star',          form: 'Voyager Boat', scent: LV_NOTE, price: 14, tag: 'Sold Out',      note: LV_NOTE, blurb: LV_BLURB, notes: LV_NOTES, weight: '3.8 oz', best: 'Gift' },
 ];
 
 export const FORM_GLYPH: Record<string, 'bar' | 'circle' | 'voyager'> = {
