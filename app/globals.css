@@ -653,6 +653,7 @@ body.dark-mode .arrivals-title { color: #fff; }
 
 /* ---- Promo banner ---- */
 .promo { position: relative; background: var(--navy); padding: 118px var(--gutter); text-align: center; overflow: hidden; }
+.promo-custom-bg { background: linear-gradient(rgba(13,31,45,0.65), rgba(13,31,45,0.55)), url(/promo-bg.jpg) center/cover fixed; }
 .promo > * { position: relative; z-index: 2; }
 .promo .vv-eyebrow { color: var(--gold); opacity: 1; }
 .promo h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.2rem,4.5vw,3.4rem); color: #fff; line-height: 1.12; max-width: 680px; margin: 12px auto 0; }

@@ -175,12 +175,7 @@ export default function HomeClient() {
       </section>
 
       {/* ── Promo Banner ── */}
-      <section className="promo reveal" style={{
-        backgroundImage: 'linear-gradient(rgba(13,31,45,0.65) 0%, rgba(13,31,45,0.55) 100%), url(/promo-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}>
+      <section className="promo reveal promo-custom-bg">
         <div className="hero-bg" style={{ opacity: 0 }} />
         <div className="vv-eyebrow">Custom &amp; Wholesale</div>
         <h2>Soap that carries your brand — made bar by bar.</h2>
