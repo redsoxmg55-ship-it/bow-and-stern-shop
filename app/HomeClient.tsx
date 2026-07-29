@@ -94,7 +94,7 @@ export default function HomeClient() {
           <div className="vv-slide-content">
             <div className="vv-eyebrow">For Business</div>
             <h2 className="vv-title">Your brand,<br />our craft.</h2>
-            <Link className="btn-pill" href="/customize">Start a Custom Order</Link>
+            <Link className="btn-pill" href="/private-clients">Start a Custom Order</Link>
           </div>
         </div>
 
@@ -180,7 +180,7 @@ export default function HomeClient() {
         <div className="vv-eyebrow">Custom &amp; Wholesale</div>
         <h2>Soap that carries your brand — made bar by bar.</h2>
         <p>Custom-branded guest bars, corporate gifts, and event favors. Your mark, our craft, with minimums lower than you&rsquo;d expect.</p>
-        <Link className="btn btn-gold" href="/customize">Request a Quote</Link>
+        <Link className="btn btn-gold" href="/private-clients">Request a Quote</Link>
       </section>
 
       {/* ── Philosophy Quote ── */}

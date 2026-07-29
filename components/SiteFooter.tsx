@@ -24,7 +24,7 @@ export default function SiteFooter() {
       <div className="footer-cta" ref={ctaRef}>
         <h2>Let&rsquo;s craft something with intention.</h2>
         <p>Whether you&rsquo;re a business looking for a partner or an individual after the perfect bar, every order gets the same level of care.</p>
-        <Link className="btn btn-gold" href="/customize">Start a Custom Order</Link>
+        <Link className="btn btn-gold" href="/private-clients">Request a Quote</Link>
       </div>
 
       <div className="footer-main">
@@ -42,7 +42,6 @@ export default function SiteFooter() {
           <Link href="/shop">All Soaps</Link>
           <Link href="/shop">Bar Soap</Link>
           <Link href="/shop">Circle Soap</Link>
-          <Link href="/customize">Customize a Bar</Link>
           <Link href="/collections">Collections</Link>
         </div>
 

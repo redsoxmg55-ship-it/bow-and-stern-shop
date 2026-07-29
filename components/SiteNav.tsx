@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation';
 const NAV_LINKS = [
   { page: 'home', href: '/', label: 'Home' },
   { page: 'shop', href: '/shop', label: 'Shop' },
-  { page: 'customize', href: '/customize', label: 'Customize' },
   { page: 'collections', href: '/collections', label: 'Collections' },
   { page: 'private', href: '/private-clients', label: 'Private Clients' },
 ];
