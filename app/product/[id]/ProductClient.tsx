@@ -121,7 +121,7 @@ export default function ProductClient({ id }: { id: string }) {
 
           {/* Details */}
           <div>
-            <div className="eyebrow" data-fade>{p.form} &middot; {p.scent}</div>
+            <div className="eyebrow" data-fade>{p.form}</div>
             <h1 data-fade style={{ fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', marginBottom: 8 }}>{p.name}</h1>
             <div data-fade style={{ marginBottom: 24, display: 'flex', alignItems: 'baseline', gap: 12 }}>
               <span style={{ fontSize: '1.5rem', fontFamily: 'var(--font-display)', color: 'var(--gold)' }}>${SINGLE_PRICE.toFixed(2)}</span>
