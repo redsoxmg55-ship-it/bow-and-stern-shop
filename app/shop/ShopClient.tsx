@@ -129,7 +129,7 @@ export default function ShopClient() {
       </header>
 
       <div className="shop-wrap" style={{
-        backgroundImage: 'linear-gradient(rgba(13,31,45,0.62) 0%, rgba(13,31,45,0.48) 100%), url(/capecod-bg.png)',
+        backgroundImage: 'linear-gradient(rgba(13,31,45,0.62) 0%, rgba(13,31,45,0.48) 100%), url(/shop-bg.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
