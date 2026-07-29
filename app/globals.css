@@ -261,7 +261,7 @@ body.dark-mode .frame { background: #102633; }
 @keyframes bs-aurora { to { background-position: 42% 34%, 56% 62%, 0 0; } }
 
 /* ---- Shop / Collections ---- */
-.shop-wrap { background: #ffffff; transition: background-color .5s ease; position: relative; }
+.shop-wrap { background: transparent; transition: background-color .5s ease; position: relative; }
 .shop-wrap::before {
   content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image:
@@ -279,11 +279,10 @@ body.dark-mode .frame { background: #102633; }
   margin-bottom: 28px; padding-bottom: 18px; border-bottom: 1px solid var(--gold-line);
   flex-wrap: wrap; gap: 14px;
 }
-.shop-count { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .04em; color: var(--text-light); }
-.shop-count strong { font-family: var(--font-mono); color: var(--navy); font-weight: 500; }
-body.dark-mode .shop-count strong { color: #fff; }
+.shop-count { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .04em; color: rgba(255,255,255,0.7); }
+.shop-count strong { font-family: var(--font-mono); color: #fff; font-weight: 500; }
 .shop-sort { display: flex; align-items: center; gap: 10px; }
-.shop-sort label { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-light); }
+.shop-sort label { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
 .shop-sort select {
   font-family: var(--font-body); font-size: .82rem; color: var(--navy); background: transparent;
   border: 1px solid var(--gold-line-mid); padding: 9px 14px; cursor: pointer;
@@ -404,7 +403,8 @@ body.dark-mode .shop-sort select { color: #fff; }
 .prod-carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.35); border: none; cursor: pointer; padding: 0; transition: background .2s; }
 .prod-carousel-dot.active { background: var(--gold); }
 
-.product { display: flex; flex-direction: column; text-decoration: none; }
+.product { display: flex; flex-direction: column; text-decoration: none; background: #fff; border-radius: 6px; padding: 18px; box-shadow: 0 8px 32px rgba(13,31,45,0.18); }
+body.dark-mode .product { background: var(--navy-mid); }
 .product a, .product a:hover { text-decoration: none; }
 .product .frame { aspect-ratio: 1/1; margin-bottom: 18px; transition: border-color .25s; }
 .product:hover .frame { border-color: var(--gold-line-mid); box-shadow: 0 18px 50px -32px rgba(45,135,188,.7), inset 0 0 0 1px rgba(184,149,90,.08); }
