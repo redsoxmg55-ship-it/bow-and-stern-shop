@@ -78,7 +78,7 @@ function ProductCard({ p, index }: { p: Product; index: number }) {
           <div style={{ fontSize: '0.7rem', color: 'var(--text-light)', fontFamily: 'var(--font-mono)', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>$5.50/bar · MOQ 100</div>
         </div>
       </div>
-      <div className="product-form" style={{ position: 'relative', zIndex: 2 }}>{p.form} &middot; {p.scent}</div>
+      <div className="product-form" style={{ position: 'relative', zIndex: 2 }}>{p.form}</div>
       <p className="product-scent" style={{ flex: 1, position: 'relative', zIndex: 2 }}>{p.note}</p>
       <button className="btn btn-primary btn-sm product-add" style={{ position: 'relative', zIndex: 2 }} onClick={addToCart}>Add to Cart</button>
     </div>
