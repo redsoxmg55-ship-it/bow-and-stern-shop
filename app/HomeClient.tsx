@@ -84,12 +84,13 @@ export default function HomeClient() {
         </div>
         {/* Slide 2 */}
         <div className={`vv-slide${slide === 1 ? ' active' : ''}`}>
-          <div className="vv-slide-bg">
-            <div className="hero-bg" style={{ background: 'radial-gradient(120% 90% at 72% 8%, rgba(184,149,90,.18), transparent 58%), linear-gradient(160deg, #0D1F2D 0%, #1B3A4B 130%)' }} />
+          <div className="vv-slide-bg" style={{
+            backgroundImage: 'linear-gradient(rgba(13,31,45,0.55) 0%, rgba(13,31,45,0.45) 100%), url(/promo-bg.jpg)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}>
             <span className="corner corner-lg tl" /><span className="corner corner-lg tr" />
             <span className="corner corner-lg bl" /><span className="corner corner-lg br" />
-            <span className="vv-slide-glyph"><GlyphSvg type="voyager" /></span>
-            <span className="vv-slide-caption">Lifestyle Campaign Photo</span>
           </div>
           <div className="vv-slide-content">
             <div className="vv-eyebrow">For Business</div>
@@ -175,8 +176,8 @@ export default function HomeClient() {
       </section>
 
       {/* ── Promo Banner ── */}
-      <section className="promo reveal promo-custom-bg">
-        <div className="hero-bg" style={{ opacity: 0 }} />
+      <section className="promo reveal">
+        <div className="hero-bg" />
         <div className="vv-eyebrow">Custom &amp; Wholesale</div>
         <h2>Soap that carries your brand — made bar by bar.</h2>
         <p>Custom-branded guest bars, corporate gifts, and event favors. Your mark, our craft, with minimums lower than you&rsquo;d expect.</p>
