@@ -165,7 +165,7 @@ export default function ShopClient() {
           <div className="shop-grid">
             {([
               { form: 'Bar', label: 'The Bar', tag: 'Sold Out' },
-              { form: 'Roundstone', label: 'Roundstone Soap', tag: '' },
+              { form: 'Roundstone', label: 'Roundstone Soap', tag: 'Low Inventory' },
               { form: 'Voyager Boat', label: 'Voyager Boat', tag: 'Sold Out' },
             ] as const).map(({ form, label, tag }, i) => {
               const p = list.find(x => x.form === form) || BS_PRODUCTS.find(x => x.form === form)!;
