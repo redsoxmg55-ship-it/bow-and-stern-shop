@@ -128,7 +128,12 @@ export default function ShopClient() {
         <p ref={subRef}>Four forms. One recipe standard.</p>
       </header>
 
-      <div className="shop-wrap">
+      <div className="shop-wrap" style={{
+        backgroundImage: 'url(/capecod-bg.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}>
         <div className="shop-inner">
           {/* Filter chips */}
           <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
