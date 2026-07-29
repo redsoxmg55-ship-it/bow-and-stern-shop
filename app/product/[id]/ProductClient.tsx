@@ -105,7 +105,15 @@ export default function ProductClient({ id }: { id: string }) {
         <div ref={heroRef} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
           {/* Gallery */}
           <div data-fade>
-            <ProductCarousel glyph={FORM_GLYPH[p.form]} label={p.form} tag={p.tag} activeSlide={carouselSlide} onSlideChange={setCarouselSlide} />
+            <ProductCarousel
+              glyph={FORM_GLYPH[p.form]}
+              label={p.form}
+              tag={p.tag}
+              activeSlide={carouselSlide}
+              onSlideChange={setCarouselSlide}
+              colorHex={colorMode === 'swirl' ? activeSwirl?.hex1 : activeSolid?.hex}
+              colorHex2={colorMode === 'swirl' ? activeSwirl?.hex2 : undefined}
+            />
           </div>
 
           {/* Details */}

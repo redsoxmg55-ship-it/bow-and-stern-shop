@@ -13,13 +13,15 @@ interface Props {
   activeSlide?: number;
   onSlideChange?: (i: number) => void;
   href?: string;
+  colorHex?: string;
+  colorHex2?: string;
 }
 
 const PRODUCT_IMAGES: Partial<Record<GlyphType, (string | null)[]>> = {
   circle: ['/products/circle-soap.png', '/products/circle-soap-3.png', '/products/circle-soap-2.png'],
 };
 
-export default function ProductCarousel({ glyph, label, tag, images, activeSlide, onSlideChange, href }: Props) {
+export default function ProductCarousel({ glyph, label, tag, images, activeSlide, onSlideChange, href, colorHex, colorHex2 }: Props) {
   const [internalSlide, setInternalSlide] = useState(0);
   const slide = activeSlide !== undefined ? activeSlide : internalSlide;
   const slides = images ?? PRODUCT_IMAGES[glyph] ?? [null, null];
@@ -40,7 +42,15 @@ export default function ProductCarousel({ glyph, label, tag, images, activeSlide
             onClick={href ? () => router.push(href) : undefined}
             style={href ? { cursor: 'pointer' } : undefined}
           >
-            <div className="frame" style={{ aspectRatio: '1/1', marginBottom: 0, width: '100%', overflow: 'hidden' }}>
+            <div className="frame" style={{
+              aspectRatio: '1/1', marginBottom: 0, width: '100%', overflow: 'hidden',
+              ...(!img && colorHex ? {
+                background: colorHex2
+                  ? `linear-gradient(135deg, ${colorHex} 50%, ${colorHex2} 50%)`
+                  : colorHex,
+                transition: 'background 0.3s ease',
+              } : {}),
+            }}>
               {tag && i === 0 && <span className="product-tag">{tag}</span>}
               <span className="corner tl"/><span className="corner tr"/>
               <span className="corner bl"/><span className="corner br"/>
@@ -49,7 +59,7 @@ export default function ProductCarousel({ glyph, label, tag, images, activeSlide
                 <img src={img} alt={`${label} photo ${i + 1}`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
               ) : (
                 <>
-                  <span className="frame-glyph"><GlyphSvg type={glyph} /></span>
+                  <span className="frame-glyph" style={colorHex ? { color: 'rgba(0,0,0,0.2)' } : undefined}><GlyphSvg type={glyph} /></span>
                   <span className="frame-caption">{label} — Photo {i + 1}</span>
                 </>
               )}
