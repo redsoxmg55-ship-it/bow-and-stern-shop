@@ -38,16 +38,15 @@ function CheckoutModal({ items, subtotal, onClose }: {
   subtotal: number;
   onClose: () => void;
 }) {
-  const [step, setStep] = useState<'contact' | 'shipping' | 'payment'>('contact');
+  const [step, setStep] = useState<'contact' | 'shipping'>('contact');
   const [placed, setPlaced] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
 
-  // Controlled form state
   const [contact, setContact] = useState({ firstName: '', lastName: '', email: '', phone: '' });
   const [shipping, setShipping] = useState({ address1: '', address2: '', city: '', state: '', zip: '', country: 'United States' });
 
-  const steps = ['contact', 'shipping', 'payment'] as const;
+  const steps = ['contact', 'shipping'] as const;
   const stepIdx = steps.indexOf(step);
   const shippingCost = 5.00;
   const total = subtotal + shippingCost;
@@ -111,7 +110,7 @@ function CheckoutModal({ items, subtotal, onClose }: {
             <div style={{ padding: '32px 32px 40px', borderRight: '1px solid var(--gold-line)' }}>
               {/* Step indicators */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: 36 }}>
-                {(['Contact', 'Shipping', 'Payment'] as const).map((s, i) => {
+                {(['Contact', 'Shipping'] as const).map((s, i) => {
                   const key = s.toLowerCase() as typeof steps[number];
                   const done = stepIdx > i;
                   const active = stepIdx === i;
@@ -192,49 +191,14 @@ function CheckoutModal({ items, subtotal, onClose }: {
                       <input style={inputStyle} value={shipping.country} onChange={e => setShipping(s => ({ ...s, country: e.target.value }))} />
                     </div>
                   </div>
+                  {error && <div style={{ marginTop: 12, fontSize: '0.82rem', color: '#c0392b', fontFamily: 'var(--font-mono)' }}>{error}</div>}
                   <div style={{ display: 'flex', gap: 12, marginTop: 28 }}>
                     <button className="btn btn-outline" onClick={() => setStep('contact')} style={{ flex: 1 }}>Back</button>
-                    <button className="btn btn-primary" onClick={() => setStep('payment')} style={{ flex: 2 }}>Continue to Payment</button>
+                    <button className="btn btn-primary" onClick={placeOrder} style={{ flex: 2 }} disabled={sending}>{sending ? 'Placing Order…' : `Place Order — ${money(total)}`}</button>
                   </div>
                 </div>
               )}
 
-              {/* Payment step */}
-              {step === 'payment' && (
-                <div>
-                  <div style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 20, textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>Payment Details</div>
-                  <div style={{ padding: '16px', background: '#fdf9f3', border: '1px solid var(--gold-line)', borderRadius: 3, marginBottom: 20 }}>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-mid)', fontFamily: 'var(--font-display)', lineHeight: 1.6 }}>
-                      We&rsquo;ll contact you at <strong>{contact.email}</strong> to arrange payment. Your order details will be emailed to us immediately.
-                    </div>
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px 16px' }}>
-                    <div style={{ gridColumn: 'span 2' }}>
-                      <label style={labelStyle}>Name on Card</label>
-                      <input style={inputStyle} placeholder={`${contact.firstName} ${contact.lastName}`} />
-                    </div>
-                    <div style={{ gridColumn: 'span 2' }}>
-                      <label style={labelStyle}>Card Number</label>
-                      <input style={inputStyle} placeholder="•••• •••• •••• ••••" />
-                    </div>
-                    <div>
-                      <label style={labelStyle}>Expiry (MM / YY)</label>
-                      <input style={inputStyle} placeholder="MM / YY" />
-                    </div>
-                    <div>
-                      <label style={labelStyle}>CVC</label>
-                      <input style={inputStyle} placeholder="•••" />
-                    </div>
-                  </div>
-                  {error && <div style={{ marginTop: 12, fontSize: '0.82rem', color: '#c0392b', fontFamily: 'var(--font-mono)' }}>{error}</div>}
-                  <div style={{ display: 'flex', gap: 12, marginTop: 28 }}>
-                    <button className="btn btn-outline" onClick={() => setStep('shipping')} style={{ flex: 1 }} disabled={sending}>Back</button>
-                    <button className="btn btn-primary" onClick={placeOrder} style={{ flex: 2 }} disabled={sending}>
-                      {sending ? 'Placing Order…' : `Place Order — ${money(total)}`}
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Right: order summary */}
