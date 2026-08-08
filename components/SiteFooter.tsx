@@ -47,8 +47,6 @@ export default function SiteFooter() {
 
         <div className="footer-col">
           <h4>Company</h4>
-          <Link href="/about">Our Story</Link>
-          <Link href="/about">The Craft</Link>
           <a href="mailto:bowandsternsoapco@gmail.com">Wholesale</a>
           <a href="mailto:bowandsternsoapco@gmail.com">Get in Touch</a>
         </div>
