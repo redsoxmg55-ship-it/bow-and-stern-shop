@@ -22,12 +22,20 @@ const PRODUCT_IMAGES: Partial<Record<GlyphType, (string | null)[]>> = {
   circle: ['/products/circle-soap.png', '/products/circle-soap-3.png', '/products/circle-soap-2.png'],
 };
 
+const DEFAULT_SLIDE_COLORS: SlideColor[] = [
+  { hex: '#ffffff' },
+  { hex: '#2E86AB' },
+  { hex: '#f9e84e' },
+];
+
 export default function ProductCarousel({ glyph, label, tag, images, activeSlide, onSlideChange, href, slideColors }: Props) {
   const [internalSlide, setInternalSlide] = useState(0);
   const slide = activeSlide !== undefined ? activeSlide : internalSlide;
   const baseSlides = images ?? PRODUCT_IMAGES[glyph] ?? [];
-  const slides = slideColors && slideColors.length > 0
-    ? slideColors.map((_, i) => baseSlides[i] ?? null)
+  const hasRealImages = baseSlides.some(s => s !== null);
+  const effectiveColors = slideColors ?? (hasRealImages ? undefined : DEFAULT_SLIDE_COLORS);
+  const slides = effectiveColors && effectiveColors.length > 0
+    ? effectiveColors.map((_, i) => baseSlides[i] ?? null)
     : (baseSlides.length > 0 ? baseSlides : [null]);
   const router = useRouter();
 
@@ -47,7 +55,7 @@ export default function ProductCarousel({ glyph, label, tag, images, activeSlide
             style={href ? { cursor: 'pointer' } : undefined}
           >
             {(() => {
-              const sc = slideColors?.[i];
+              const sc = effectiveColors?.[i];
               const bg = sc ? (sc.hex2
                 ? `linear-gradient(135deg, ${sc.hex} 50%, ${sc.hex2} 50%)`
                 : sc.hex) : undefined;
