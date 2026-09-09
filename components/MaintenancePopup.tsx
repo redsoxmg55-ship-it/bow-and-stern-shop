@@ -29,13 +29,9 @@ export default function MaintenancePopup() {
         <span style={{ position:'absolute', bottom:12, left:12, width:14, height:14, borderBottom:'1.5px solid var(--gold)', borderLeft:'1.5px solid var(--gold)' }} />
         <span style={{ position:'absolute', bottom:12, right:12, width:14, height:14, borderBottom:'1.5px solid var(--gold)', borderRight:'1.5px solid var(--gold)' }} />
 
-        {/* Logo glyph */}
-        <svg viewBox="0 0 64 64" fill="none" stroke="var(--navy)" strokeWidth="1.4" strokeLinejoin="round" style={{ width: 48, height: 48, margin: '0 auto 20px' }}>
-          <path d="M10 26 L32 18 L54 26 L32 34 Z"/>
-          <path d="M10 26 V40 L32 48 V34"/>
-          <path d="M54 26 V40 L32 48"/>
-          <path d="M18 28 Q24 31 32 29" opacity=".55"/>
-        </svg>
+        {/* Logo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo-transparent.png" alt="Bow & Stern Soap Co." style={{ width: 90, height: 90, objectFit: 'contain', margin: '0 auto 20px', display: 'block' }} />
 
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 12 }}>
           Bow &amp; Stern Soap Co.
