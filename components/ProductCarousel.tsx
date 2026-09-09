@@ -25,7 +25,6 @@ const PRODUCT_IMAGES: Partial<Record<GlyphType, (string | null)[]>> = {
 const DEFAULT_SLIDE_COLORS: SlideColor[] = [
   { hex: '#ffffff' },
   { hex: '#2E86AB' },
-  { hex: '#F4A0B0' },
 ];
 
 export default function ProductCarousel({ glyph, label, tag, images, activeSlide, onSlideChange, href, slideColors }: Props) {

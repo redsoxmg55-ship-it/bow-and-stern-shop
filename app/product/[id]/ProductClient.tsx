@@ -27,7 +27,6 @@ export default function ProductClient({ id }: { id: string }) {
   const SOLID_COLORS = [
     { key: 'white',      label: 'Plain White',  hex: '#ffffff', slide: 0 },
     { key: 'ocean-wave', label: 'Ocean Wave',   hex: '#2E86AB', slide: 1 },
-    { key: 'pink-rose',  label: 'Pink Rose',    hex: '#F4A0B0', slide: 2 },
   ] as const;
 
   const SWIRL_COLORS = [
