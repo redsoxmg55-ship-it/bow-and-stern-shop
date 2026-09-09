@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MaintenancePopup from "@/components/MaintenancePopup";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shopbowandsternsoap.com'),
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <MaintenancePopup />
+        {children}
+      </body>
     </html>
   );
 }
