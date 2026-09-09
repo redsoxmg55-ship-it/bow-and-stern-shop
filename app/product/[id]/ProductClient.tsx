@@ -11,7 +11,6 @@ import ProductCarousel from '@/components/ProductCarousel';
 
 export default function ProductClient({ id }: { id: string }) {
   const p = BS_PRODUCTS.find(x => x.id === id);
-  const related = BS_PRODUCTS.filter(x => x.id !== id && x.form === p?.form).slice(0, 3);
   const [qty, setQty] = useState(1);
   const [orderType, setOrderType] = useState<'single' | 'bulk'>('single');
   const [engrave, setEngrave] = useState('');
@@ -332,25 +331,6 @@ export default function ProductClient({ id }: { id: string }) {
           </div>
         </div>
 
-        {/* Related products */}
-        {related.length > 0 && (
-          <div style={{ marginTop: 96 }}>
-            <div className="eyebrow" style={{ marginBottom: 8 }}>More {p.form} Soaps</div>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: 40 }}>You might also like</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
-              {related.map(r => (
-                <Link key={r.id} href={`/product/${r.id}`} style={{ textDecoration: 'none', color: 'inherit' }} className="product">
-                  <ProductCarousel glyph={FORM_GLYPH[r.form]} label={r.form} tag={r.tag} href={`/product/${r.id}`} />
-                  <div className="product-top">
-                    <div className="product-name">{r.name}</div>
-                    <div className="product-price">${r.price}</div>
-                  </div>
-                  <p className="product-scent">{r.note}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       <SiteFooter />
