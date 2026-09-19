@@ -54,7 +54,7 @@ function ProductCard({ p, index }: { p: Product; index: number }) {
       const cart = JSON.parse(localStorage.getItem('bs-cart') || '[]');
       const existing = cart.find((i: { id: string }) => i.id === p.id);
       if (existing) existing.qty++;
-      else cart.push({ id: p.id, name: p.name, price: p.price, form: p.form, qty: 1 });
+      else cart.push({ id: p.id, name: p.name, price: 7.00, form: p.form, qty: 1 });
       localStorage.setItem('bs-cart', JSON.stringify(cart));
       window.dispatchEvent(new CustomEvent('bs-cart-updated'));
     } catch {}
