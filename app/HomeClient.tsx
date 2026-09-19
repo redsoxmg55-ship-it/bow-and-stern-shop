@@ -80,7 +80,7 @@ export default function HomeClient() {
           <div className="vv-slide-content">
             <div className="vv-eyebrow">Summer on the Coast</div>
             <h2 className="vv-title">The Harbor Series</h2>
-            <Link className="btn-pill" href="/collections">Shop the Collection</Link>
+            <span className="btn-pill" style={{ opacity: 0.4, cursor: 'default', pointerEvents: 'none' }}>Shop the Collection</span>
           </div>
         </div>
         {/* Slide 2 */}
