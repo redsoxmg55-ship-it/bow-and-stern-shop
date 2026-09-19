@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import MaintenancePopup from "@/components/MaintenancePopup";
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://shopbowandsternsoap.com'),
   title: "Bow & Stern Soap Co.",
   description: "Handcrafted soap, made with intention. Small-batch bars from the New England coast.",
   alternates: {
     canonical: '/',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/icon.png',
   },
 };
 
@@ -19,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <MaintenancePopup />
         {children}
       </body>
     </html>
