@@ -95,9 +95,9 @@ export default function SiteNav() {
 
         <div className="nav-links">
           {NAV_LINKS.map(l => (
-            <Link key={l.page} href={l.href} className={`nav-link${pathname === l.href || (l.page === 'collections' && pathname.startsWith('/collections')) ? ' active' : ''}`}>
-              {l.label}
-            </Link>
+            l.page === 'collections'
+              ? <span key={l.page} className="nav-link" style={{ opacity: 0.4, cursor: 'default', pointerEvents: 'none' }}>{l.label}</span>
+              : <Link key={l.page} href={l.href} className={`nav-link${pathname === l.href ? ' active' : ''}`}>{l.label}</Link>
           ))}
         </div>
 
