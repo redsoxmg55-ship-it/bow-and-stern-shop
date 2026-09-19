@@ -38,7 +38,7 @@ function CheckoutModal({ items, subtotal, onClose }: {
   subtotal: number;
   onClose: () => void;
 }) {
-  const [step, setStep] = useState<'contact' | 'shipping'>('contact');
+  const [step, setStep] = useState<'contact' | 'shipping' | 'payment'>('contact');
   const [placed, setPlaced] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
@@ -46,7 +46,7 @@ function CheckoutModal({ items, subtotal, onClose }: {
   const [contact, setContact] = useState({ firstName: '', lastName: '', email: '', phone: '' });
   const [shipping, setShipping] = useState({ address1: '', address2: '', city: '', state: '', zip: '', country: 'United States' });
 
-  const steps = ['contact', 'shipping'] as const;
+  const steps = ['contact', 'shipping', 'payment'] as const;
   const stepIdx = steps.indexOf(step);
   const shippingCost = 0;
   const total = subtotal + shippingCost;
@@ -110,7 +110,7 @@ function CheckoutModal({ items, subtotal, onClose }: {
             <div style={{ padding: '32px 32px 40px', borderRight: '1px solid var(--gold-line)' }}>
               {/* Step indicators */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 0, marginBottom: 36 }}>
-                {(['Contact', 'Shipping'] as const).map((s, i) => {
+                {(['Contact', 'Shipping', 'Payment'] as const).map((s, i) => {
                   const key = s.toLowerCase() as typeof steps[number];
                   const done = stepIdx > i;
                   const active = stepIdx === i;
@@ -191,27 +191,33 @@ function CheckoutModal({ items, subtotal, onClose }: {
                       <input style={inputStyle} value={shipping.country} onChange={e => setShipping(s => ({ ...s, country: e.target.value }))} />
                     </div>
                   </div>
-                  {/* Venmo payment section */}
-                  <div style={{
-                    marginTop: 24, padding: '16px 18px', borderRadius: 4,
-                    background: '#f0f7ff', border: '1px solid #cce0f5',
-                  }}>
-                    <div style={{ fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', color: 'var(--navy)', marginBottom: 8 }}>Payment</div>
-                    <div style={{ fontSize: '0.88rem', color: '#333', lineHeight: 1.6, fontFamily: 'var(--font-display)' }}>
-                      After placing your order, send payment via Venmo to:
-                    </div>
-                    <div style={{ marginTop: 8, fontSize: '1.05rem', fontWeight: 700, color: 'var(--navy)', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>
-                      @mateo-griffen
-                    </div>
-                    <div style={{ marginTop: 6, fontSize: '0.75rem', color: '#666', fontFamily: 'var(--font-mono)' }}>
-                      Your order will be confirmed once payment is received.
-                    </div>
-                  </div>
-
                   {error && <div style={{ marginTop: 12, fontSize: '0.82rem', color: '#c0392b', fontFamily: 'var(--font-mono)' }}>{error}</div>}
                   <div style={{ display: 'flex', gap: 12, marginTop: 28 }}>
                     <button className="btn btn-outline" onClick={() => setStep('contact')} style={{ flex: 1 }}>Back</button>
-                    <button className="btn btn-primary" onClick={placeOrder} style={{ flex: 2 }} disabled={sending}>{sending ? 'Placing Order…' : `Place Order — ${money(total)}`}</button>
+                    <button className="btn btn-primary" onClick={() => setStep('payment')} style={{ flex: 2 }}>Continue to Payment</button>
+                  </div>
+                </div>
+              )}
+
+              {/* Payment step */}
+              {step === 'payment' && (
+                <div style={{ padding: '32px 28px' }}>
+                  <div style={{ fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--text-light)', marginBottom: 20, textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>Payment</div>
+                  <p style={{ fontFamily: 'var(--font-display)', fontSize: '0.95rem', color: '#444', lineHeight: 1.6, marginBottom: 24 }}>
+                    Scan the QR code below or search <strong>@mateo-griffen</strong> on Venmo to complete your payment of <strong>{money(total)}</strong>.
+                  </p>
+                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/venmo-qr.png" alt="Venmo QR code — @mateo-griffen" style={{ width: '100%', maxWidth: 280, borderRadius: 12, boxShadow: '0 4px 24px rgba(0,0,0,0.10)' }} />
+                  </div>
+                  <div style={{ background: '#f0f7ff', border: '1px solid #cce0f5', borderRadius: 4, padding: '12px 16px', marginBottom: 24, textAlign: 'center' }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1rem', fontWeight: 700, color: 'var(--navy)', letterSpacing: '0.04em' }}>@mateo-griffen</div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#666', marginTop: 4 }}>Your order will be confirmed once payment is received.</div>
+                  </div>
+                  {error && <div style={{ marginBottom: 12, fontSize: '0.82rem', color: '#c0392b', fontFamily: 'var(--font-mono)' }}>{error}</div>}
+                  <div style={{ display: 'flex', gap: 12 }}>
+                    <button className="btn btn-outline" onClick={() => setStep('shipping')} style={{ flex: 1 }}>Back</button>
+                    <button className="btn btn-primary" onClick={placeOrder} style={{ flex: 2 }} disabled={sending}>{sending ? 'Confirming…' : 'I\'ve Sent Payment'}</button>
                   </div>
                 </div>
               )}
