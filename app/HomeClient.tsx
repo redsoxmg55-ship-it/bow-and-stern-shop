@@ -112,30 +112,12 @@ export default function HomeClient() {
         </div>
       </section>
 
-      {/* ── New Arrivals ── */}
+      {/* ── Shop Now CTA ── */}
       <section className="band off">
-        <div className="inner">
-          <div className="arrivals-head reveal">
-            <div className="arrivals-title">New Arrivals Are Here</div>
-          </div>
-          <div className="grid-4">
-            {ARRIVALS.map((p, i) => (
-              <article key={p.id} className="product reveal" style={{ animationDelay: `${i * 80}ms` }}>
-                <ProductCarousel glyph={FORM_GLYPH[p.form]} label={p.form} tag={p.tag} href={`/product/${p.id}`} />
-                <Link className="product-link" href={`/product/${p.id}`}>
-                  <div className="product-top">
-                    <div className="product-name">{p.name}</div>
-                    <div className="product-price">$7.00 <span style={{ fontSize: '0.72rem', fontWeight: 400, color: 'var(--text-light)', letterSpacing: '0.04em' }}>or $5.50/bar · MOQ 100</span></div>
-                  </div>
-                  <div className="product-form">{p.form} &middot; {p.scent}</div>
-                </Link>
-                <button className="btn btn-primary btn-sm product-add" onClick={() => addToCart(p)}>Add to Cart</button>
-              </article>
-            ))}
-          </div>
-          <div className="shop-all-row reveal">
-            <Link className="btn btn-outline" href="/shop">Shop All Soaps</Link>
-          </div>
+        <div className="inner" style={{ textAlign: 'center', padding: '64px 24px' }}>
+          <Link className="btn btn-primary reveal" href="/shop" style={{ fontSize: '1rem', padding: '16px 48px', letterSpacing: '0.12em' }}>
+            Shop Now
+          </Link>
         </div>
       </section>
 
