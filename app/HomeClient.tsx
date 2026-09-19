@@ -115,6 +115,8 @@ export default function HomeClient() {
       {/* ── Shop Now CTA ── */}
       <section className="band off">
         <div className="inner" style={{ textAlign: 'center', padding: '64px 24px' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-transparent.png" alt="Bow & Stern Soap Co." className="reveal" style={{ width: 160, height: 160, objectFit: 'contain', margin: '0 auto 32px', display: 'block' }} />
           <Link className="btn btn-primary reveal" href="/shop" style={{ fontSize: '1rem', padding: '16px 48px', letterSpacing: '0.12em' }}>
             Shop Now
           </Link>
