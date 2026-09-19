@@ -48,7 +48,7 @@ function CheckoutModal({ items, subtotal, onClose }: {
 
   const steps = ['contact', 'shipping'] as const;
   const stepIdx = steps.indexOf(step);
-  const shippingCost = 5.00;
+  const shippingCost = 0;
   const total = subtotal + shippingCost;
 
   const placeOrder = async () => {
@@ -225,7 +225,7 @@ function CheckoutModal({ items, subtotal, onClose }: {
                 ))}
               </div>
               <div style={{ borderTop: '1px solid var(--gold-line)', paddingTop: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {([['Subtotal', money(subtotal)], ['Shipping', money(shippingCost)], ['Total', money(total)]] as [string, string][]).map(([k, v], i) => (
+                {([['Subtotal', money(subtotal)], ['Shipping', 'Free'], ['Total', money(total)]] as [string, string][]).map(([k, v], i) => (
                   <div key={k} style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <span style={{ fontFamily: 'var(--font-display)', fontSize: i === 2 ? '1rem' : '0.85rem', color: i === 2 ? 'var(--navy)' : 'var(--text-mid)', fontWeight: i === 2 ? 600 : 400 }}>{k}</span>
                     <span style={{ fontFamily: 'var(--font-display)', fontSize: i === 2 ? '1rem' : '0.85rem', color: i === 2 ? 'var(--gold)' : 'var(--text-mid)', fontWeight: i === 2 ? 600 : 400 }}>{v}</span>
@@ -309,7 +309,7 @@ export default function CartDrawer() {
               <span className="cs-label">Subtotal</span>
               <span className="cs-val">{money(subtotal)}</span>
             </div>
-            <div className="cart-note">Prices shown excl. tax. Shipping &amp; taxes calculated at checkout.</div>
+            <div className="cart-note">Prices shown excl. tax. Free shipping on all orders.</div>
             <button className="btn btn-primary" onClick={() => { setOpen(false); setCheckout(true); }}>Proceed to Checkout</button>
           </div>
         )}
