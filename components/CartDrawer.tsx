@@ -191,6 +191,23 @@ function CheckoutModal({ items, subtotal, onClose }: {
                       <input style={inputStyle} value={shipping.country} onChange={e => setShipping(s => ({ ...s, country: e.target.value }))} />
                     </div>
                   </div>
+                  {/* Venmo payment section */}
+                  <div style={{
+                    marginTop: 24, padding: '16px 18px', borderRadius: 4,
+                    background: '#f0f7ff', border: '1px solid #cce0f5',
+                  }}>
+                    <div style={{ fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', fontFamily: 'var(--font-mono)', color: 'var(--navy)', marginBottom: 8 }}>Payment</div>
+                    <div style={{ fontSize: '0.88rem', color: '#333', lineHeight: 1.6, fontFamily: 'var(--font-display)' }}>
+                      After placing your order, send payment via Venmo to:
+                    </div>
+                    <div style={{ marginTop: 8, fontSize: '1.05rem', fontWeight: 700, color: 'var(--navy)', fontFamily: 'var(--font-mono)', letterSpacing: '0.04em' }}>
+                      @mateo-griffen
+                    </div>
+                    <div style={{ marginTop: 6, fontSize: '0.75rem', color: '#666', fontFamily: 'var(--font-mono)' }}>
+                      Your order will be confirmed once payment is received.
+                    </div>
+                  </div>
+
                   {error && <div style={{ marginTop: 12, fontSize: '0.82rem', color: '#c0392b', fontFamily: 'var(--font-mono)' }}>{error}</div>}
                   <div style={{ display: 'flex', gap: 12, marginTop: 28 }}>
                     <button className="btn btn-outline" onClick={() => setStep('contact')} style={{ flex: 1 }}>Back</button>
