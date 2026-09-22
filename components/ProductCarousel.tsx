@@ -19,6 +19,7 @@ interface Props {
 }
 
 const PRODUCT_IMAGES: Partial<Record<GlyphType, (string | null)[]>> = {
+  bar: ['/products/bar-soap-1.png', null, null],
   circle: ['/products/circle-soap.png', '/products/circle-soap-3.png', '/products/circle-soap-2.png'],
 };
 
