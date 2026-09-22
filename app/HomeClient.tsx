@@ -93,7 +93,7 @@ export default function HomeClient() {
             <span className="corner corner-lg tl" /><span className="corner corner-lg tr" />
             <span className="corner corner-lg bl" /><span className="corner corner-lg br" />
           </div>
-          <div className="vv-slide-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, width: '100%', maxWidth: 900 }}>
+          <div className="vv-slide-content" style={{ position: 'relative', width: '100%', maxWidth: 900 }}>
             <div>
               <div className="vv-eyebrow">For Business</div>
               <h2 className="vv-title">Your brand,<br />our craft.</h2>
@@ -101,15 +101,16 @@ export default function HomeClient() {
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/promo-soap.png" alt="Custom branded soap" style={{
-              width: 'clamp(260px, 40vw, 460px)',
-              height: 'clamp(260px, 40vw, 460px)',
+              position: 'absolute',
+              right: '-4%',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: 'clamp(220px, 34vw, 400px)',
+              height: 'clamp(220px, 34vw, 400px)',
               objectFit: 'contain',
-              filter: 'drop-shadow(0 12px 40px rgba(0,0,0,0.35)) brightness(0.92) saturate(0.85)',
+              filter: 'drop-shadow(0 12px 40px rgba(0,0,0,0.4)) brightness(0.9) saturate(0.8)',
               mixBlendMode: 'luminosity',
-              opacity: 0.88,
-              flexShrink: 0,
-              display: 'block',
-              margin: 'auto',
+              opacity: 0.9,
             }} />
           </div>
         </div>
