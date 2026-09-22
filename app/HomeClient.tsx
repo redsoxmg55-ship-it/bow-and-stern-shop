@@ -101,11 +101,13 @@ export default function HomeClient() {
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/promo-soap.png" alt="Custom branded soap" style={{
-              width: 'clamp(140px, 22vw, 260px)',
-              height: 'clamp(140px, 22vw, 260px)',
+              width: 'clamp(200px, 32vw, 380px)',
+              height: 'clamp(200px, 32vw, 380px)',
               objectFit: 'contain',
               filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.28))',
               flexShrink: 0,
+              display: 'block',
+              margin: 'auto',
             }} />
           </div>
         </div>
