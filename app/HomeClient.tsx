@@ -132,7 +132,7 @@ export default function HomeClient() {
           </div>
           <div className="cat-tiles">
             {([
-              { form: 'Bar', glyph: 'bar' as const, label: 'The Bar', photo: null },
+              { form: 'Bar', glyph: 'bar' as const, label: 'The Bar', photo: '/products/bar-soap-1.png' },
               { form: 'Roundstone', glyph: 'circle' as const, label: 'Roundstone Soap', photo: '/products/circle-soap.png' },
             ]).map((t, i) => (
               <Link key={t.form} className={`cat-tile reveal${i > 0 ? ` d${i + 1}` : ''}`} href="/shop">
