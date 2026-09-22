@@ -97,10 +97,10 @@ export default function HomeClient() {
           <img src="/promo-soap.png" alt="" aria-hidden="true" style={{
             position: 'absolute',
             bottom: '-8%',
-            left: '62%',
+            left: '72%',
             transform: 'translateX(-50%)',
-            width: '90%',
-            maxWidth: 800,
+            width: '75%',
+            maxWidth: 660,
             objectFit: 'contain',
             filter: 'drop-shadow(0 -8px 40px rgba(0,0,0,0.3)) brightness(0.88) saturate(0.75)',
             mixBlendMode: 'luminosity',
