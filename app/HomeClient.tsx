@@ -93,10 +93,20 @@ export default function HomeClient() {
             <span className="corner corner-lg tl" /><span className="corner corner-lg tr" />
             <span className="corner corner-lg bl" /><span className="corner corner-lg br" />
           </div>
-          <div className="vv-slide-content">
-            <div className="vv-eyebrow">For Business</div>
-            <h2 className="vv-title">Your brand,<br />our craft.</h2>
-            <Link className="btn-pill" href="/private-clients">Start a Custom Order</Link>
+          <div className="vv-slide-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, width: '100%', maxWidth: 900 }}>
+            <div>
+              <div className="vv-eyebrow">For Business</div>
+              <h2 className="vv-title">Your brand,<br />our craft.</h2>
+              <Link className="btn-pill" href="/private-clients">Start a Custom Order</Link>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/promo-soap.png" alt="Custom branded soap" style={{
+              width: 'clamp(140px, 22vw, 260px)',
+              height: 'clamp(140px, 22vw, 260px)',
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.28))',
+              flexShrink: 0,
+            }} />
           </div>
         </div>
 
