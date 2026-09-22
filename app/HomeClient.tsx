@@ -93,6 +93,20 @@ export default function HomeClient() {
             <span className="corner corner-lg tl" /><span className="corner corner-lg tr" />
             <span className="corner corner-lg bl" /><span className="corner corner-lg br" />
           </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/promo-soap.png" alt="" aria-hidden="true" style={{
+            position: 'absolute',
+            bottom: '-8%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '80%',
+            maxWidth: 700,
+            objectFit: 'contain',
+            filter: 'drop-shadow(0 -8px 40px rgba(0,0,0,0.3)) brightness(0.88) saturate(0.75)',
+            mixBlendMode: 'luminosity',
+            opacity: 0.85,
+            pointerEvents: 'none',
+          }} />
           <div className="vv-slide-content">
             <div className="vv-eyebrow">For Business</div>
             <h2 className="vv-title">Your brand,<br />our craft.</h2>
