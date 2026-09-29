@@ -304,6 +304,9 @@ export default function ProductClient({ id }: { id: string }) {
                   Add to Cart — ${(SINGLE_PRICE * qty).toFixed(2)}
                 </button>
               </div>
+              <div style={{ marginTop: 12, fontFamily: 'var(--font-mono)', fontSize: '0.68rem', letterSpacing: '0.1em', color: 'var(--text-light)', textTransform: 'uppercase' }}>
+                More scents &amp; colors available on request — <Link href="/private-clients" style={{ color: 'var(--gold)', textDecoration: 'none' }}>contact us</Link>
+              </div>
             )}
             {orderType === 'bulk' && (
               <div data-fade style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
